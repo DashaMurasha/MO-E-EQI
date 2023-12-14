@@ -1,0 +1,13 @@
+Package: EQIOptim
+Type: Package
+Title: EQIOptim
+Version: 0.1.0
+Depends: R (>= 3.4.4), MASS, DiceKriging
+Imports: MASS, DiceKriging
+Author@R: person("Daria", "Semochkina", email = "d.semochkina@soton.ac.uk", role="aut")
+Maintainer: Daria Semochkina <d.semochkina@soton.ac.uk>
+Description: Muti-objective optimisation using expected quantile optimisation
+License: Not sure yet.
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
