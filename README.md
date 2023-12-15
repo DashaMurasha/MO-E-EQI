@@ -10,6 +10,8 @@ Authors: D. Semochkina, A.I.J. Forester, D.C. Woods
 
 Corresponding Author: D. Semochkina (d.semochkina@soton.ac.uk), School of Mathematical Sciences, University of Southampton, UK 
 
+This README.md file is a copy of an Rmarkdown file 'MO-E-EQI.Rmd' available with the package.
+
 This repository provides R package to caclulate multi-objective Euclidian expected quantile improvement (MO-E-EQI)  presented in the manuscript. 
 
 First install our package MOEEQI from git. We need the standard package 'devtools' to add our package off git.
