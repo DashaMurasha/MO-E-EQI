@@ -145,7 +145,7 @@ noise.var <- list(tau1 = tau_orig_design$tau1^2,
                   tau2 = tau_orig_design$tau2^2)
 ```
 Fit emulators
-```{r}
+```{r, results='hide'}
 model_f1 <- DiceKriging::km(formula=~1, design=orig_design_X, response=y1_orig, covtype="gauss", noise.var=noise.var$tau1)
 model_f2 <- DiceKriging::km(formula=~1, design=orig_design_X, response=y2_orig, covtype="gauss", noise.var=noise.var$tau2)
 ```
@@ -188,7 +188,7 @@ ConstraintInfo <- NULL
 # ConstraintInfo$y <- cbind(y1_new, y2_new)
 ```
 Start the EQI loop
-```{r}
+```{r, results='hide'}
 reps <- NULL
 for (i in 1:Nsteps) {
   #calculate EQI metric. Note that other outputs are Pareto front, design and quantile sd
