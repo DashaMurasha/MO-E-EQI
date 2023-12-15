@@ -3,10 +3,16 @@ title: "MO-E-EQI"
 output: html_document
 date: "2023-12-15"
 ---
-In this example we first install our package MOEEQI from git
-  
-This is the standard way to install packages that are on the R library cran (our package is not on this).
-We need the standard package devtools to add our package off git.
+
+Supplemental materials for (!!!!!!!!!!!!!!! ref !!!!!!!!!!!!!!!!!!)
+
+Authors: D. Semochkina, A.I.J. Forester, D.C. Woods
+
+Corresponding Author: D. Semochkina (d.semochkina@soton.ac.uk), School of Mathematical Sciences, University of Southampton, UK 
+
+This repository provides R package to caclulate multi-objective Euclidian expected quantile improvement (MO-E-EQI)  presented in the manuscript. 
+
+First install our package MOEEQI from git. We need the standard package 'devtools' to add our package off git.
 
 ```{r}
 install.packages("devtools")
