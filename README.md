@@ -39,7 +39,7 @@ install_github("DashaMurasha/MO-E-EQI")
 
     ## 
     ## ── R CMD build ─────────────────────────────────────────────────────────────────
-    ##      checking for file ‘/private/var/folders/rv/328k5chd2px4l66r9w03g4lm0000gp/T/RtmpP9rux2/remotesa1c1285c165/DashaMurasha-MO-E-EQI-9f0661a/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/rv/328k5chd2px4l66r9w03g4lm0000gp/T/RtmpP9rux2/remotesa1c1285c165/DashaMurasha-MO-E-EQI-9f0661a/DESCRIPTION’
+    ##      checking for file ‘/private/var/folders/rv/328k5chd2px4l66r9w03g4lm0000gp/T/RtmpZV8KmA/remotesa41660c75eb4/DashaMurasha-MO-E-EQI-c742450/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/rv/328k5chd2px4l66r9w03g4lm0000gp/T/RtmpZV8KmA/remotesa41660c75eb4/DashaMurasha-MO-E-EQI-c742450/DESCRIPTION’
     ##   ─  preparing ‘MOEEQI’:
     ##      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
     ##      Warning: design_repetitions.Rd:59: unexpected END_OF_INPUT '
@@ -71,7 +71,8 @@ library("MOEEQI")
     ## Loading required package: prodlim
 
 Next, we move on to the example accompanying the paper (!!!!!!!!!!!!!!!
-ref !!!!!!!!!!!!!!!!!!)
+ref !!!!!!!!!!!!!!!!!!). This example is available in the
+‘test_function_EQI.R’ file.
 
 We first set the level of noise and define out funstions
 
@@ -219,36 +220,35 @@ model_f1 <- DiceKriging::km(formula=~1, design=orig_design_X, response=y1_orig, 
     ## * covariance model : 
     ##   - type :  gauss 
     ##   - noise variances :
-    ## [1] 0.0003400424 0.0003400424 0.0003400424 0.0003400424 0.0003400424
+    ## [1] 0.0003392235 0.0003392235 0.0003392235 0.0003392235 0.0003392235
     ##   - parameters lower bounds :  1e-10 1e-10 
     ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01788044 2.937852 
-    ##   - best initial criterion value(s) :  -0.09719381 
+    ##   - variance bounds :  0.01775105 2.566296 
+    ##   - best initial criterion value(s) :  -1.202881 
     ## 
     ## N = 3, M = 5 machine precision = 2.22045e-16
     ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=     0.097194  |proj g|=        1.425
-    ## At iterate     1  f =    -0.034226  |proj g|=       0.22816
-    ## At iterate     2  f =    -0.061834  |proj g|=       0.17694
-    ## At iterate     3  f =    -0.081443  |proj g|=       0.86006
-    ## At iterate     4  f =    -0.095879  |proj g|=       0.27386
-    ## At iterate     5  f =    -0.099194  |proj g|=      0.046829
-    ## At iterate     6  f =    -0.099347  |proj g|=     0.0081983
-    ## At iterate     7  f =    -0.099349  |proj g|=     0.0023538
-    ## At iterate     8  f =    -0.099349  |proj g|=    0.00048699
-    ## At iterate     9  f =    -0.099349  |proj g|=    1.7561e-05
-    ## At iterate    10  f =    -0.099349  |proj g|=    1.1877e-07
+    ## At iterate     0  f=       1.2029  |proj g|=       2.4857
+    ## At iterate     1  f =      0.53036  |proj g|=       0.91993
+    ## At iterate     2  f =      0.48378  |proj g|=       0.85468
+    ## At iterate     3  f =      0.34604  |proj g|=         1.638
+    ## At iterate     4  f =     -0.15933  |proj g|=       0.66323
+    ## At iterate     5  f =     -0.17405  |proj g|=       0.03434
+    ## At iterate     6  f =     -0.17411  |proj g|=      0.023027
+    ## At iterate     7  f =     -0.17412  |proj g|=      0.018012
+    ## At iterate     8  f =     -0.17412  |proj g|=    0.00012556
+    ## At iterate     9  f =     -0.17412  |proj g|=    1.4813e-06
     ## 
-    ## iterations 10
-    ## function evaluations 13
-    ## segments explored during Cauchy searches 12
+    ## iterations 9
+    ## function evaluations 12
+    ## segments explored during Cauchy searches 10
     ## BFGS updates skipped 0
     ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 1.18773e-07
-    ## final function value -0.0993486
+    ## norm of the final projected gradient 1.48131e-06
+    ## final function value -0.17412
     ## 
-    ## F = -0.0993486
-    ## final  value -0.099349 
+    ## F = -0.17412
+    ## final  value -0.174120 
     ## converged
 
 ``` r
@@ -265,40 +265,38 @@ model_f2 <- DiceKriging::km(formula=~1, design=orig_design_X, response=y2_orig, 
     ## * covariance model : 
     ##   - type :  gauss 
     ##   - noise variances :
-    ## [1] 0.0006312351 0.0006312351 0.0006312351 0.0006312351 0.0006312351
+    ## [1] 0.0005671853 0.0005671853 0.0005671853 0.0005671853 0.0005671853
     ##   - parameters lower bounds :  1e-10 1e-10 
     ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01552255 2.099604 
-    ##   - best initial criterion value(s) :  -1.375825 
+    ##   - variance bounds :  0.01618822 2.580716 
+    ##   - best initial criterion value(s) :  -1.098281 
     ## 
     ## N = 3, M = 5 machine precision = 2.22045e-16
     ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=       1.3758  |proj g|=       1.8298
-    ## At iterate     1  f =       1.3185  |proj g|=        1.7377
-    ## At iterate     2  f =       1.2013  |proj g|=        1.1691
-    ## At iterate     3  f =       1.1339  |proj g|=        1.1957
-    ## At iterate     4  f =       1.1207  |proj g|=       0.15606
-    ## At iterate     5  f =       1.1195  |proj g|=       0.16959
-    ## At iterate     6  f =        1.114  |proj g|=       0.18168
-    ## At iterate     7  f =       1.0924  |proj g|=       0.29827
-    ## At iterate     8  f =       1.0725  |proj g|=        0.3833
-    ## At iterate     9  f =       1.0541  |proj g|=       0.26274
-    ## At iterate    10  f =       1.0525  |proj g|=       0.15929
-    ## At iterate    11  f =       1.0504  |proj g|=       0.04657
-    ## At iterate    12  f =       1.0502  |proj g|=     0.0013771
-    ## At iterate    13  f =       1.0502  |proj g|=    1.8022e-05
-    ## At iterate    14  f =       1.0502  |proj g|=    2.6012e-07
+    ## At iterate     0  f=       1.0983  |proj g|=       1.1168
+    ## At iterate     1  f =       1.0388  |proj g|=        1.0496
+    ## At iterate     2  f =       1.0173  |proj g|=       0.54991
+    ## At iterate     3  f =       1.0007  |proj g|=       0.41963
+    ## At iterate     4  f =      0.95689  |proj g|=       0.39897
+    ## At iterate     5  f =         0.91  |proj g|=       0.23299
+    ## At iterate     6  f =      0.89033  |proj g|=        0.2328
+    ## At iterate     7  f =       0.8865  |proj g|=       0.10415
+    ## At iterate     8  f =      0.88527  |proj g|=      0.043169
+    ## At iterate     9  f =      0.88507  |proj g|=      0.010983
+    ## At iterate    10  f =      0.88507  |proj g|=     0.0012292
+    ## At iterate    11  f =      0.88507  |proj g|=    6.3104e-05
+    ## At iterate    12  f =      0.88507  |proj g|=    1.0137e-05
     ## 
-    ## iterations 14
-    ## function evaluations 18
-    ## segments explored during Cauchy searches 14
+    ## iterations 12
+    ## function evaluations 16
+    ## segments explored during Cauchy searches 13
     ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 2.60122e-07
-    ## final function value 1.05018
+    ## active bounds at final generalized Cauchy point 0
+    ## norm of the final projected gradient 1.01375e-05
+    ## final function value 0.885065
     ## 
-    ## F = 1.05018
-    ## final  value 1.050183 
+    ## F = 0.885065
+    ## final  value 0.885065 
     ## converged
 
 y1_new and y2_new will record new observations, prompted by EQI
@@ -439,209 +437,38 @@ for (i in 1:Nsteps) {
     ## * covariance model : 
     ##   - type :  gauss 
     ##   - noise variances :
-    ## [1] 0.0003851625 0.0003400424 0.0003400424 0.0003400424 0.0003400424
-    ## [6] 0.0003400424
+    ## [1] 0.0003469849 0.0003392235 0.0003392235 0.0003392235 0.0003392235
+    ## [6] 0.0003392235
     ##   - parameters lower bounds :  1e-10 1e-10 
     ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01694186 3.120801 
-    ##   - best initial criterion value(s) :  1.97659 
+    ##   - variance bounds :  0.0148499 2.239366 
+    ##   - best initial criterion value(s) :  0.9712027 
     ## 
     ## N = 3, M = 5 machine precision = 2.22045e-16
     ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -1.9766  |proj g|=       1.2401
-    ## At iterate     1  f =      -2.0838  |proj g|=        0.7853
-    ## At iterate     2  f =      -2.2364  |proj g|=       0.23469
-    ## At iterate     3  f =      -2.2699  |proj g|=       0.48174
-    ## At iterate     4  f =      -2.3162  |proj g|=        0.5857
-    ## At iterate     5  f =      -2.3275  |proj g|=       0.18913
-    ## At iterate     6  f =      -2.3297  |proj g|=      0.016775
-    ## At iterate     7  f =      -2.3297  |proj g|=     0.0018578
-    ## At iterate     8  f =      -2.3297  |proj g|=    2.2479e-05
-    ## At iterate     9  f =      -2.3297  |proj g|=    1.5752e-07
+    ## At iterate     0  f=      -0.9712  |proj g|=       2.0463
+    ## At iterate     1  f =      -1.4872  |proj g|=       0.70905
+    ## At iterate     2  f =      -1.8629  |proj g|=        1.0496
+    ## At iterate     3  f =      -1.9792  |proj g|=        1.7797
+    ## At iterate     4  f =      -2.1209  |proj g|=       0.64397
+    ## At iterate     5  f =      -2.2152  |proj g|=        1.0647
+    ## At iterate     6  f =      -2.2905  |proj g|=       0.49924
+    ## At iterate     7  f =      -2.3118  |proj g|=      0.013526
+    ## At iterate     8  f =      -2.3118  |proj g|=     0.0067672
+    ## At iterate     9  f =      -2.3118  |proj g|=     0.0022992
+    ## At iterate    10  f =      -2.3118  |proj g|=    7.6809e-06
+    ## At iterate    11  f =      -2.3118  |proj g|=     6.547e-08
     ## 
-    ## iterations 9
-    ## function evaluations 13
-    ## segments explored during Cauchy searches 11
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 1.57524e-07
-    ## final function value -2.32974
-    ## 
-    ## F = -2.32974
-    ## final  value -2.329736 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ## [1] 0.0005503511 0.0006312351 0.0006312351 0.0006312351 0.0006312351
-    ## [6] 0.0006312351
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01379296 2.078901 
-    ##   - best initial criterion value(s) :  -0.8520622 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      0.85206  |proj g|=       2.8703
-    ## At iterate     1  f =     -0.15434  |proj g|=        1.9633
-    ## At iterate     2  f =     -0.44046  |proj g|=        1.9354
-    ## At iterate     3  f =     -0.62513  |proj g|=       0.71153
-    ## At iterate     4  f =     -0.65563  |proj g|=       0.83147
-    ## At iterate     5  f =     -0.76551  |proj g|=       0.77093
-    ## At iterate     6  f =      -0.9478  |proj g|=        0.8459
-    ## At iterate     7  f =      -1.0394  |proj g|=       0.87158
-    ## At iterate     8  f =      -1.0778  |proj g|=        0.6471
-    ## At iterate     9  f =       -1.091  |proj g|=      0.085607
-    ## At iterate    10  f =      -1.0916  |proj g|=      0.020305
-    ## At iterate    11  f =      -1.0917  |proj g|=      0.003124
-    ## At iterate    12  f =      -1.0917  |proj g|=    4.4673e-05
-    ## At iterate    13  f =      -1.0917  |proj g|=    3.3192e-06
-    ## 
-    ## iterations 13
-    ## function evaluations 17
-    ## segments explored during Cauchy searches 15
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 3.31916e-06
-    ## final function value -1.09173
-    ## 
-    ## F = -1.09173
-    ## final  value -1.091732 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ## [1] 0.0003332050 0.0003851625 0.0003400424 0.0003400424 0.0003400424
-    ## [6] 0.0003400424 0.0003400424
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.0194748 3.364874 
-    ##   - best initial criterion value(s) :  3.268775 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -3.2688  |proj g|=       2.4206
-    ## At iterate     1  f =      -3.6336  |proj g|=        3.2302
-    ## At iterate     2  f =      -3.7131  |proj g|=        3.1784
-    ## At iterate     3  f =      -3.8891  |proj g|=       0.40399
-    ## At iterate     4  f =      -3.9049  |proj g|=       0.21467
-    ## At iterate     5  f =      -4.0012  |proj g|=       0.56698
-    ## At iterate     6  f =      -4.0086  |proj g|=       0.30859
-    ## At iterate     7  f =      -4.0122  |proj g|=     0.0022113
-    ## At iterate     8  f =      -4.0122  |proj g|=    0.00019171
-    ## At iterate     9  f =      -4.0122  |proj g|=     1.901e-07
-    ## 
-    ## iterations 9
-    ## function evaluations 12
-    ## segments explored during Cauchy searches 11
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 1.90099e-07
-    ## final function value -4.01221
-    ## 
-    ## F = -4.01221
-    ## final  value -4.012212 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ## [1] 0.0005621549 0.0005503511 0.0006312351 0.0006312351 0.0006312351
-    ## [6] 0.0006312351 0.0006312351
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01629245 2.700095 
-    ##   - best initial criterion value(s) :  0.2360067 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=     -0.23601  |proj g|=       2.5474
-    ## At iterate     1  f =     -0.93736  |proj g|=        2.4753
-    ## At iterate     2  f =      -1.0952  |proj g|=       0.44679
-    ## At iterate     3  f =      -1.1549  |proj g|=       0.42871
-    ## At iterate     4  f =      -1.2742  |proj g|=        0.5457
-    ## At iterate     5  f =      -1.3743  |proj g|=       0.76537
-    ## At iterate     6  f =      -1.4154  |proj g|=       0.60081
-    ## At iterate     7  f =      -1.4416  |proj g|=       0.16446
-    ## At iterate     8  f =      -1.4432  |proj g|=      0.051925
-    ## At iterate     9  f =      -1.4436  |proj g|=      0.011819
-    ## At iterate    10  f =      -1.4436  |proj g|=     0.0050264
-    ## At iterate    11  f =      -1.4436  |proj g|=    0.00028141
-    ## At iterate    12  f =      -1.4436  |proj g|=     1.937e-05
-    ## At iterate    13  f =      -1.4436  |proj g|=    5.3091e-07
-    ## 
-    ## iterations 13
+    ## iterations 11
     ## function evaluations 16
-    ## segments explored during Cauchy searches 15
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 5.30906e-07
-    ## final function value -1.44365
-    ## 
-    ## F = -1.44365
-    ## final  value -1.443645 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ## [1] 0.0003573473 0.0003332050 0.0003851625 0.0003400424 0.0003400424
-    ## [6] 0.0003400424 0.0003400424 0.0003400424
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01820033 3.072403 
-    ##   - best initial criterion value(s) :  5.504052 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -5.5041  |proj g|=         2.16
-    ## At iterate     1  f =       -5.901  |proj g|=       0.40144
-    ## At iterate     2  f =      -6.1748  |proj g|=        1.0634
-    ## At iterate     3  f =      -6.2474  |proj g|=        1.2211
-    ## At iterate     4  f =      -6.3145  |proj g|=       0.59064
-    ## At iterate     5  f =      -6.3821  |proj g|=       0.75491
-    ## At iterate     6  f =      -6.4334  |proj g|=       0.35128
-    ## At iterate     7  f =      -6.4383  |proj g|=      0.083535
-    ## At iterate     8  f =      -6.4384  |proj g|=     0.0029845
-    ## At iterate     9  f =      -6.4384  |proj g|=    2.5496e-05
-    ## At iterate    10  f =      -6.4384  |proj g|=    9.6491e-08
-    ## 
-    ## iterations 10
-    ## function evaluations 14
     ## segments explored during Cauchy searches 13
     ## BFGS updates skipped 0
     ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 9.64907e-08
-    ## final function value -6.43837
+    ## norm of the final projected gradient 6.54702e-08
+    ## final function value -2.31179
     ## 
-    ## F = -6.43837
-    ## final  value -6.438370 
+    ## F = -2.31179
+    ## final  value -2.311790 
     ## converged
     ## 
     ## optimisation start
@@ -653,41 +480,81 @@ for (i in 1:Nsteps) {
     ## * covariance model : 
     ##   - type :  gauss 
     ##   - noise variances :
-    ## [1] 0.0007849974 0.0005621549 0.0005503511 0.0006312351 0.0006312351
-    ## [6] 0.0006312351 0.0006312351 0.0006312351
+    ## [1] 0.0005610908 0.0005671853 0.0005671853 0.0005671853 0.0005671853
+    ## [6] 0.0005671853
     ##   - parameters lower bounds :  1e-10 1e-10 
     ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.0177139 2.990653 
-    ##   - best initial criterion value(s) :  2.077679 
+    ##   - variance bounds :  0.01711059 2.610959 
+    ##   - best initial criterion value(s) :  0.4984574 
     ## 
     ## N = 3, M = 5 machine precision = 2.22045e-16
     ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -2.0777  |proj g|=       2.6778
-    ## At iterate     1  f =      -2.2775  |proj g|=         1.642
-    ## At iterate     2  f =      -2.5816  |proj g|=        0.9874
-    ## At iterate     3  f =      -2.8207  |proj g|=        0.4413
-    ## At iterate     4  f =      -2.8758  |proj g|=       0.48707
-    ## At iterate     5  f =      -2.9429  |proj g|=       0.47231
-    ## At iterate     6  f =      -3.0176  |proj g|=        0.1754
-    ## At iterate     7  f =      -3.0275  |proj g|=       0.08212
-    ## At iterate     8  f =        -3.03  |proj g|=      0.019405
-    ## At iterate     9  f =      -3.0301  |proj g|=     0.0034249
-    ## At iterate    10  f =      -3.0301  |proj g|=     0.0003087
-    ## At iterate    11  f =      -3.0301  |proj g|=    1.6978e-07
-    ## At iterate    12  f =      -3.0301  |proj g|=    1.6978e-07
+    ## At iterate     0  f=     -0.49846  |proj g|=      0.95795
+    ## At iterate     1  f =     -0.77216  |proj g|=        2.4264
+    ## At iterate     2  f =     -0.91538  |proj g|=       0.55739
+    ## At iterate     3  f =     -0.96549  |proj g|=       0.37201
+    ## At iterate     4  f =      -1.0967  |proj g|=       0.50253
+    ## At iterate     5  f =      -1.1548  |proj g|=       0.36169
+    ## At iterate     6  f =      -1.1576  |proj g|=       0.16488
+    ## At iterate     7  f =      -1.1584  |proj g|=      0.016218
+    ## At iterate     8  f =      -1.1585  |proj g|=      0.005251
+    ## At iterate     9  f =      -1.1585  |proj g|=    0.00052973
+    ## At iterate    10  f =      -1.1585  |proj g|=    3.0478e-05
+    ## At iterate    11  f =      -1.1585  |proj g|=    2.5147e-06
     ## 
-    ## iterations 12
-    ## function evaluations 28
+    ## iterations 11
+    ## function evaluations 13
+    ## segments explored during Cauchy searches 13
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 2.51475e-06
+    ## final function value -1.15846
+    ## 
+    ## F = -1.15846
+    ## final  value -1.158458 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ## [1] 0.0003651903 0.0003469849 0.0003392235 0.0003392235 0.0003392235
+    ## [6] 0.0003392235 0.0003392235
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01418728 2.20417 
+    ##   - best initial criterion value(s) :  3.566497 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -3.5665  |proj g|=       2.0974
+    ## At iterate     1  f =      -3.8088  |proj g|=        1.9136
+    ## At iterate     2  f =       -3.892  |proj g|=        1.3335
+    ## At iterate     3  f =       -4.075  |proj g|=        2.0363
+    ## At iterate     4  f =      -4.1676  |proj g|=        2.0162
+    ## At iterate     5  f =       -4.458  |proj g|=        1.9035
+    ## At iterate     6  f =      -4.5151  |proj g|=       0.56121
+    ## At iterate     7  f =      -4.5223  |proj g|=      0.034826
+    ## At iterate     8  f =      -4.5224  |proj g|=      0.039177
+    ## At iterate     9  f =      -4.5224  |proj g|=      0.013306
+    ## At iterate    10  f =      -4.5224  |proj g|=    0.00013727
+    ## At iterate    11  f =      -4.5224  |proj g|=    1.2598e-05
+    ## 
+    ## iterations 11
+    ## function evaluations 16
     ## segments explored during Cauchy searches 14
     ## BFGS updates skipped 0
     ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 1.69782e-07
-    ## final function value -3.03009
+    ## norm of the final projected gradient 1.25976e-05
+    ## final function value -4.52239
     ## 
-    ## F = -3.03009
-    ## Warning:  more than 10 function and gradient evaluations
-    ##    in the last line search
-    ## final  value -3.030085 
+    ## F = -4.52239
+    ## final  value -4.522394 
     ## converged
     ## 
     ## optimisation start
@@ -699,504 +566,627 @@ for (i in 1:Nsteps) {
     ## * covariance model : 
     ##   - type :  gauss 
     ##   - noise variances :
-    ## [1] 0.0003642896 0.0003573473 0.0003332050 0.0003851625 0.0003400424
-    ## [6] 0.0003400424 0.0003400424 0.0003400424 0.0003400424
+    ## [1] 0.0004803086 0.0005610908 0.0005671853 0.0005671853 0.0005671853
+    ## [6] 0.0005671853 0.0005671853
     ##   - parameters lower bounds :  1e-10 1e-10 
     ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01594687 2.711786 
-    ##   - best initial criterion value(s) :  7.973315 
+    ##   - variance bounds :  0.01426238 2.276984 
+    ##   - best initial criterion value(s) :  3.212926 
     ## 
     ## N = 3, M = 5 machine precision = 2.22045e-16
     ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -7.9733  |proj g|=      0.72847
-    ## At iterate     1  f =       -8.258  |proj g|=        2.5956
-    ## At iterate     2  f =      -8.4512  |proj g|=        2.2515
-    ## At iterate     3  f =      -8.6639  |proj g|=        2.1956
-    ## At iterate     4  f =      -8.9074  |proj g|=        1.6151
-    ## At iterate     5  f =      -9.0242  |proj g|=        1.0432
-    ## At iterate     6  f =      -9.0288  |proj g|=       0.58877
-    ## At iterate     7  f =      -9.0312  |proj g|=      0.073557
-    ## At iterate     8  f =      -9.0313  |proj g|=     0.0065123
-    ## At iterate     9  f =      -9.0313  |proj g|=     0.0001085
-    ## At iterate    10  f =      -9.0313  |proj g|=    2.0207e-06
-    ## 
-    ## iterations 10
-    ## function evaluations 13
-    ## segments explored during Cauchy searches 12
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 2.02071e-06
-    ## final function value -9.03127
-    ## 
-    ## F = -9.03127
-    ## final  value -9.031269 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ## [1] 0.0005334182 0.0007849974 0.0005621549 0.0005503511 0.0006312351
-    ## [6] 0.0006312351 0.0006312351 0.0006312351 0.0006312351
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01650504 2.719201 
-    ##   - best initial criterion value(s) :  3.796359 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -3.7964  |proj g|=       2.3669
-    ## At iterate     1  f =      -4.4615  |proj g|=        2.4993
-    ## At iterate     2  f =      -4.9134  |proj g|=        2.3984
-    ## At iterate     3  f =        -5.03  |proj g|=        1.4549
-    ## At iterate     4  f =      -5.1765  |proj g|=       0.69844
-    ## At iterate     5  f =      -5.3236  |proj g|=       0.39229
-    ## At iterate     6  f =      -5.3987  |proj g|=      0.088816
-    ## At iterate     7  f =      -5.3994  |proj g|=      0.085241
-    ## At iterate     8  f =       -5.401  |proj g|=      0.003824
-    ## At iterate     9  f =       -5.401  |proj g|=    0.00054755
-    ## At iterate    10  f =       -5.401  |proj g|=     5.072e-05
-    ## At iterate    11  f =       -5.401  |proj g|=    2.2562e-06
-    ## 
-    ## iterations 11
-    ## function evaluations 14
-    ## segments explored during Cauchy searches 13
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 2.25617e-06
-    ## final function value -5.40099
-    ## 
-    ## F = -5.40099
-    ## final  value -5.400993 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0003341577 0.0003642896 0.0003573473 0.0003332050 0.0003851625
-    ##  [6] 0.0003400424 0.0003400424 0.0003400424 0.0003400424 0.0003400424
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01664113 2.906503 
-    ##   - best initial criterion value(s) :  10.95471 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -10.955  |proj g|=       2.7638
-    ## At iterate     1  f =      -11.078  |proj g|=         1.321
-    ## At iterate     2  f =      -11.157  |proj g|=       0.60463
-    ## At iterate     3  f =      -11.328  |proj g|=        1.3074
-    ## At iterate     4  f =      -11.385  |proj g|=       0.81351
-    ## At iterate     5  f =        -11.4  |proj g|=       0.14908
-    ## At iterate     6  f =        -11.4  |proj g|=       0.17836
-    ## At iterate     7  f =      -11.401  |proj g|=      0.036141
-    ## At iterate     8  f =      -11.401  |proj g|=     0.0012288
-    ## At iterate     9  f =      -11.401  |proj g|=    0.00013399
-    ## At iterate    10  f =      -11.401  |proj g|=    8.2764e-08
-    ## 
-    ## iterations 10
-    ## function evaluations 15
-    ## segments explored during Cauchy searches 12
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 8.27641e-08
-    ## final function value -11.4007
-    ## 
-    ## F = -11.4007
-    ## final  value -11.400663 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0005976144 0.0005334182 0.0007849974 0.0005621549 0.0005503511
-    ##  [6] 0.0006312351 0.0006312351 0.0006312351 0.0006312351 0.0006312351
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01682549 2.92801 
-    ##   - best initial criterion value(s) :  7.161496 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -7.1615  |proj g|=       2.6285
-    ## At iterate     1  f =      -7.2508  |proj g|=       0.91391
-    ## At iterate     2  f =      -7.3012  |proj g|=       0.69759
-    ## At iterate     3  f =      -7.4591  |proj g|=       0.98038
-    ## At iterate     4  f =      -7.5632  |proj g|=        1.0765
-    ## At iterate     5  f =      -7.6944  |proj g|=       0.62743
-    ## At iterate     6  f =       -7.718  |proj g|=       0.44533
-    ## At iterate     7  f =      -7.7377  |proj g|=        0.1424
-    ## At iterate     8  f =      -7.7402  |proj g|=      0.036131
-    ## At iterate     9  f =      -7.7404  |proj g|=     0.0038337
-    ## At iterate    10  f =      -7.7404  |proj g|=    0.00013494
-    ## At iterate    11  f =      -7.7404  |proj g|=    3.9117e-05
-    ## 
-    ## iterations 11
-    ## function evaluations 14
-    ## segments explored during Cauchy searches 12
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 3.9117e-05
-    ## final function value -7.74043
-    ## 
-    ## F = -7.74043
-    ## final  value -7.740427 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0002695730 0.0003341577 0.0003642896 0.0003573473 0.0003332050
-    ##  [6] 0.0003851625 0.0003400424 0.0003400424 0.0003400424 0.0003400424
-    ## [11] 0.0003400424
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01727053 2.989575 
-    ##   - best initial criterion value(s) :  13.89836 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -13.898  |proj g|=       2.8112
-    ## At iterate     1  f =      -14.117  |proj g|=       0.24653
-    ## At iterate     2  f =      -14.143  |proj g|=       0.23445
-    ## At iterate     3  f =       -14.21  |proj g|=        1.7631
-    ## At iterate     4  f =      -14.256  |proj g|=        1.5102
-    ## At iterate     5  f =       -14.28  |proj g|=       0.12491
-    ## At iterate     6  f =       -14.28  |proj g|=        0.1027
-    ## At iterate     7  f =       -14.28  |proj g|=     0.0028474
-    ## At iterate     8  f =       -14.28  |proj g|=    0.00061105
-    ## At iterate     9  f =       -14.28  |proj g|=    1.1742e-06
-    ## 
-    ## iterations 9
-    ## function evaluations 12
-    ## segments explored during Cauchy searches 12
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 1.17419e-06
-    ## final function value -14.2804
-    ## 
-    ## F = -14.2804
-    ## final  value -14.280398 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0006546074 0.0005976144 0.0005334182 0.0007849974 0.0005621549
-    ##  [6] 0.0005503511 0.0006312351 0.0006312351 0.0006312351 0.0006312351
-    ## [11] 0.0006312351
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01896661 3.342911 
-    ##   - best initial criterion value(s) :  9.630774 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -9.6308  |proj g|=       2.9834
-    ## At iterate     1  f =      -9.9732  |proj g|=        1.4968
-    ## At iterate     2  f =      -10.112  |proj g|=       0.86105
-    ## At iterate     3  f =      -10.175  |proj g|=       0.46969
-    ## At iterate     4  f =      -10.191  |proj g|=       0.38237
-    ## At iterate     5  f =      -10.267  |proj g|=      0.090433
-    ## At iterate     6  f =      -10.271  |proj g|=      0.065893
-    ## At iterate     7  f =      -10.272  |proj g|=      0.020643
-    ## At iterate     8  f =      -10.272  |proj g|=     0.0019813
-    ## At iterate     9  f =      -10.272  |proj g|=    2.6275e-05
-    ## At iterate    10  f =      -10.272  |proj g|=    1.3839e-06
-    ## 
-    ## iterations 10
-    ## function evaluations 12
-    ## segments explored during Cauchy searches 12
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 1.38389e-06
-    ## final function value -10.2716
-    ## 
-    ## F = -10.2716
-    ## final  value -10.271559 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0001558049 0.0003341577 0.0003642896 0.0003573473 0.0003332050
-    ##  [6] 0.0003851625 0.0003400424 0.0003400424 0.0003400424 0.0003400424
-    ## [11] 0.0003400424
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01737722 3.010871 
-    ##   - best initial criterion value(s) :  12.84807 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -12.848  |proj g|=       1.5699
-    ## At iterate     1  f =      -13.027  |proj g|=         1.066
-    ## At iterate     2  f =      -13.158  |proj g|=        1.0316
-    ## At iterate     3  f =      -13.809  |proj g|=       0.73301
-    ## At iterate     4  f =      -13.899  |proj g|=       0.20814
-    ## At iterate     5  f =      -13.962  |proj g|=       0.11307
-    ## At iterate     6  f =      -13.963  |proj g|=      0.018057
-    ## At iterate     7  f =      -13.963  |proj g|=     0.0004078
-    ## At iterate     8  f =      -13.963  |proj g|=    7.4644e-06
-    ## 
-    ## iterations 8
-    ## function evaluations 12
-    ## segments explored during Cauchy searches 12
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 7.46437e-06
-    ## final function value -13.9626
-    ## 
-    ## F = -13.9626
-    ## final  value -13.962573 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0002690383 0.0005976144 0.0005334182 0.0007849974 0.0005621549
-    ##  [6] 0.0005503511 0.0006312351 0.0006312351 0.0006312351 0.0006312351
-    ## [11] 0.0006312351
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01879764 3.315688 
-    ##   - best initial criterion value(s) :  8.870308 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -8.8703  |proj g|=       2.2204
-    ## At iterate     1  f =      -9.8109  |proj g|=        1.6207
-    ## At iterate     2  f =      -9.9707  |proj g|=       0.77442
-    ## At iterate     3  f =      -10.278  |proj g|=       0.98366
-    ## At iterate     4  f =      -10.459  |proj g|=       0.70803
-    ## At iterate     5  f =       -10.49  |proj g|=       0.42896
-    ## At iterate     6  f =      -10.508  |proj g|=       0.14771
-    ## At iterate     7  f =      -10.514  |proj g|=      0.035679
-    ## At iterate     8  f =      -10.514  |proj g|=      0.007233
-    ## At iterate     9  f =      -10.514  |proj g|=    0.00037234
-    ## At iterate    10  f =      -10.514  |proj g|=    1.3363e-05
-    ## 
-    ## iterations 10
-    ## function evaluations 13
-    ## segments explored during Cauchy searches 12
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 1.33633e-05
-    ## final function value -10.5142
-    ## 
-    ## F = -10.5142
-    ## final  value -10.514250 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0003093320 0.0001558049 0.0003341577 0.0003642896 0.0003573473
-    ##  [6] 0.0003332050 0.0003851625 0.0003400424 0.0003400424 0.0003400424
-    ## [11] 0.0003400424 0.0003400424
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01755057 3.131416 
-    ##   - best initial criterion value(s) :  15.98614 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -15.986  |proj g|=       3.0023
-    ## At iterate     1  f =      -16.116  |proj g|=        2.2454
-    ## At iterate     2  f =      -16.333  |proj g|=        2.1873
-    ## At iterate     3  f =      -16.655  |proj g|=       0.95938
-    ## At iterate     4  f =      -16.705  |proj g|=        0.5643
-    ## At iterate     5  f =      -16.954  |proj g|=       0.24499
-    ## At iterate     6  f =      -16.956  |proj g|=         0.241
-    ## At iterate     7  f =      -16.958  |proj g|=      0.033921
-    ## At iterate     8  f =      -16.958  |proj g|=     0.0066517
-    ## At iterate     9  f =      -16.958  |proj g|=    0.00010118
-    ## At iterate    10  f =      -16.958  |proj g|=    7.1109e-06
-    ## 
-    ## iterations 10
-    ## function evaluations 14
-    ## segments explored during Cauchy searches 12
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 7.11085e-06
-    ## final function value -16.9579
-    ## 
-    ## F = -16.9579
-    ## final  value -16.957950 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0007224908 0.0002690383 0.0005976144 0.0005334182 0.0007849974
-    ##  [6] 0.0005621549 0.0005503511 0.0006312351 0.0006312351 0.0006312351
-    ## [11] 0.0006312351 0.0006312351
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.0192063 3.307754 
-    ##   - best initial criterion value(s) :  12.46973 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=       -12.47  |proj g|=       2.9261
-    ## At iterate     1  f =      -12.986  |proj g|=        0.9715
-    ## At iterate     2  f =      -13.034  |proj g|=       0.61704
-    ## At iterate     3  f =      -13.076  |proj g|=       0.43837
-    ## At iterate     4  f =      -13.097  |proj g|=       0.42362
-    ## At iterate     5  f =      -13.118  |proj g|=       0.11807
-    ## At iterate     6  f =       -13.12  |proj g|=      0.035713
-    ## At iterate     7  f =       -13.12  |proj g|=     0.0052717
-    ## At iterate     8  f =       -13.12  |proj g|=     0.0011143
-    ## At iterate     9  f =       -13.12  |proj g|=    2.5214e-05
-    ## At iterate    10  f =       -13.12  |proj g|=    4.6675e-07
-    ## 
-    ## iterations 10
-    ## function evaluations 12
-    ## segments explored during Cauchy searches 12
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 4.66745e-07
-    ## final function value -13.1201
-    ## 
-    ## F = -13.1201
-    ## final  value -13.120056 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0003093320 0.0001113611 0.0003341577 0.0003642896 0.0003573473
-    ##  [6] 0.0003332050 0.0003851625 0.0003400424 0.0003400424 0.0003400424
-    ## [11] 0.0003400424 0.0003400424
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.0175851 3.138217 
-    ##   - best initial criterion value(s) :  16.07714 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -16.077  |proj g|=       2.1468
-    ## At iterate     1  f =      -16.289  |proj g|=       0.35316
-    ## At iterate     2  f =      -16.327  |proj g|=       0.32212
-    ## At iterate     3  f =      -16.601  |proj g|=       0.74977
-    ## At iterate     4  f =      -16.611  |proj g|=        0.5254
-    ## At iterate     5  f =      -16.614  |proj g|=       0.15105
-    ## At iterate     6  f =      -16.615  |proj g|=       0.01451
-    ## At iterate     7  f =      -16.615  |proj g|=     0.0004571
-    ## At iterate     8  f =      -16.615  |proj g|=    1.2114e-06
-    ## 
-    ## iterations 8
-    ## function evaluations 11
-    ## segments explored during Cauchy searches 10
-    ## BFGS updates skipped 0
-    ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 1.21144e-06
-    ## final function value -16.6146
-    ## 
-    ## F = -16.6146
-    ## final  value -16.614608 
-    ## converged
-    ## 
-    ## optimisation start
-    ## ------------------
-    ## * estimation method   : MLE 
-    ## * optimisation method : BFGS 
-    ## * analytical gradient : used
-    ## * trend model : ~1
-    ## * covariance model : 
-    ##   - type :  gauss 
-    ##   - noise variances :
-    ##  [1] 0.0007224908 0.0001905701 0.0005976144 0.0005334182 0.0007849974
-    ##  [6] 0.0005621549 0.0005503511 0.0006312351 0.0006312351 0.0006312351
-    ## [11] 0.0006312351 0.0006312351
-    ##   - parameters lower bounds :  1e-10 1e-10 
-    ##   - parameters upper bounds :  3.141593 2 
-    ##   - variance bounds :  0.01924912 3.315903 
-    ##   - best initial criterion value(s) :  11.88672 
-    ## 
-    ## N = 3, M = 5 machine precision = 2.22045e-16
-    ## At X0, 0 variables are exactly at the bounds
-    ## At iterate     0  f=      -11.887  |proj g|=       3.0769
-    ## At iterate     1  f =      -12.425  |proj g|=        2.0913
-    ## At iterate     2  f =      -12.643  |proj g|=        2.0109
-    ## At iterate     3  f =      -13.128  |proj g|=       0.80936
-    ## At iterate     4  f =      -13.165  |proj g|=       0.71905
-    ## At iterate     5  f =      -13.217  |proj g|=       0.36255
-    ## At iterate     6  f =      -13.232  |proj g|=       0.17836
-    ## At iterate     7  f =      -13.237  |proj g|=      0.042646
-    ## At iterate     8  f =      -13.237  |proj g|=     0.0058819
-    ## At iterate     9  f =      -13.237  |proj g|=    0.00030108
-    ## At iterate    10  f =      -13.237  |proj g|=    0.00015906
+    ## At iterate     0  f=      -3.2129  |proj g|=       2.0122
+    ## At iterate     1  f =      -3.3162  |proj g|=        1.1101
+    ## At iterate     2  f =      -3.3389  |proj g|=       0.81663
+    ## At iterate     3  f =      -3.3774  |proj g|=       0.54486
+    ## At iterate     4  f =      -3.3915  |proj g|=       0.44729
+    ## At iterate     5  f =      -3.4119  |proj g|=       0.14947
+    ## At iterate     6  f =      -3.4124  |proj g|=      0.077798
+    ## At iterate     7  f =      -3.4127  |proj g|=     0.0072894
+    ## At iterate     8  f =      -3.4127  |proj g|=     0.0016862
+    ## At iterate     9  f =      -3.4127  |proj g|=    0.00013469
+    ## At iterate    10  f =      -3.4127  |proj g|=    9.3953e-06
     ## 
     ## iterations 10
     ## function evaluations 13
     ## segments explored during Cauchy searches 11
     ## BFGS updates skipped 0
     ## active bounds at final generalized Cauchy point 1
-    ## norm of the final projected gradient 0.000159061
-    ## final function value -13.2368
+    ## norm of the final projected gradient 9.39526e-06
+    ## final function value -3.41271
     ## 
-    ## F = -13.2368
-    ## final  value -13.236849 
+    ## F = -3.41271
+    ## final  value -3.412705 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ## [1] 0.0003158729 0.0003651903 0.0003469849 0.0003392235 0.0003392235
+    ## [6] 0.0003392235 0.0003392235 0.0003392235
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01564072 2.392768 
+    ##   - best initial criterion value(s) :  5.904334 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -5.9043  |proj g|=       2.2672
+    ## At iterate     1  f =      -6.0611  |proj g|=        1.9511
+    ## At iterate     2  f =      -6.1457  |proj g|=        1.3419
+    ## At iterate     3  f =      -6.2307  |proj g|=        2.2295
+    ## At iterate     4  f =      -6.4845  |proj g|=       0.32164
+    ## At iterate     5  f =      -6.8603  |proj g|=       0.22284
+    ## At iterate     6  f =      -6.8609  |proj g|=       0.23208
+    ## At iterate     7  f =      -6.8627  |proj g|=      0.063305
+    ## At iterate     8  f =      -6.8628  |proj g|=      0.035459
+    ## At iterate     9  f =      -6.8628  |proj g|=    0.00043302
+    ## At iterate    10  f =      -6.8628  |proj g|=    5.4227e-06
+    ## 
+    ## iterations 10
+    ## function evaluations 14
+    ## segments explored during Cauchy searches 13
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 5.42266e-06
+    ## final function value -6.86276
+    ## 
+    ## F = -6.86276
+    ## final  value -6.862763 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ## [1] 0.0005266163 0.0004803086 0.0005610908 0.0005671853 0.0005671853
+    ## [6] 0.0005671853 0.0005671853 0.0005671853
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01503377 2.467766 
+    ##   - best initial criterion value(s) :  4.480021 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=        -4.48  |proj g|=      0.86349
+    ## At iterate     1  f =      -4.6607  |proj g|=        2.2384
+    ## At iterate     2  f =      -4.8754  |proj g|=        2.2165
+    ## At iterate     3  f =      -5.4525  |proj g|=        1.6334
+    ## At iterate     4  f =      -5.4878  |proj g|=        0.7767
+    ## At iterate     5  f =       -5.499  |proj g|=       0.28934
+    ## At iterate     6  f =      -5.5011  |proj g|=      0.052875
+    ## At iterate     7  f =      -5.5012  |proj g|=     0.0057432
+    ## At iterate     8  f =      -5.5012  |proj g|=    0.00079671
+    ## At iterate     9  f =      -5.5012  |proj g|=    5.9704e-05
+    ## At iterate    10  f =      -5.5012  |proj g|=    2.4228e-06
+    ## 
+    ## iterations 10
+    ## function evaluations 13
+    ## segments explored during Cauchy searches 12
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 2.42281e-06
+    ## final function value -5.5012
+    ## 
+    ## F = -5.5012
+    ## final  value -5.501203 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ## [1] 0.0003436513 0.0003158729 0.0003651903 0.0003469849 0.0003392235
+    ## [6] 0.0003392235 0.0003392235 0.0003392235 0.0003392235
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01606935 2.614687 
+    ##   - best initial criterion value(s) :  8.989272 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -8.9893  |proj g|=       0.7221
+    ## At iterate     1  f =      -9.0649  |proj g|=       0.62978
+    ## At iterate     2  f =      -9.1322  |proj g|=       0.69304
+    ## At iterate     3  f =      -9.4292  |proj g|=        1.1339
+    ## At iterate     4  f =      -9.4382  |proj g|=       0.12761
+    ## At iterate     5  f =      -9.4385  |proj g|=      0.027726
+    ## At iterate     6  f =      -9.4385  |proj g|=     0.0034871
+    ## At iterate     7  f =      -9.4385  |proj g|=     0.0013334
+    ## At iterate     8  f =      -9.4385  |proj g|=    9.4706e-06
+    ## 
+    ## iterations 8
+    ## function evaluations 11
+    ## segments explored during Cauchy searches 11
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 9.47063e-06
+    ## final function value -9.43847
+    ## 
+    ## F = -9.43847
+    ## final  value -9.438474 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ## [1] 0.0006088488 0.0005266163 0.0004803086 0.0005610908 0.0005671853
+    ## [6] 0.0005671853 0.0005671853 0.0005671853 0.0005671853
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.0149562 2.423476 
+    ##   - best initial criterion value(s) :  6.271993 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=       -6.272  |proj g|=       2.2164
+    ## At iterate     1  f =        -7.04  |proj g|=        1.8707
+    ## At iterate     2  f =      -7.1812  |proj g|=         0.821
+    ## At iterate     3  f =      -7.4425  |proj g|=       0.91106
+    ## At iterate     4  f =      -7.7907  |proj g|=       0.44265
+    ## At iterate     5  f =      -7.7989  |proj g|=      0.044879
+    ## At iterate     6  f =       -7.799  |proj g|=       0.04054
+    ## At iterate     7  f =      -7.7991  |proj g|=      0.024628
+    ## At iterate     8  f =      -7.7991  |proj g|=    0.00088742
+    ## At iterate     9  f =      -7.7991  |proj g|=     1.799e-05
+    ## At iterate    10  f =      -7.7991  |proj g|=    1.0329e-06
+    ## 
+    ## iterations 10
+    ## function evaluations 13
+    ## segments explored during Cauchy searches 12
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 1.0329e-06
+    ## final function value -7.79913
+    ## 
+    ## F = -7.79913
+    ## final  value -7.799126 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0003344754 0.0003436513 0.0003158729 0.0003651903 0.0003469849
+    ##  [6] 0.0003392235 0.0003392235 0.0003392235 0.0003392235 0.0003392235
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01637301 2.824797 
+    ##   - best initial criterion value(s) :  11.0679 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -11.068  |proj g|=       1.5876
+    ## At iterate     1  f =      -11.088  |proj g|=       0.17618
+    ## At iterate     2  f =       -11.15  |proj g|=       0.12582
+    ## At iterate     3  f =       -11.15  |proj g|=      0.026538
+    ## At iterate     4  f =       -11.15  |proj g|=      0.012101
+    ## At iterate     5  f =       -11.15  |proj g|=      0.012381
+    ## At iterate     6  f =       -11.15  |proj g|=     0.0016214
+    ## At iterate     7  f =       -11.15  |proj g|=    0.00014464
+    ## 
+    ## iterations 7
+    ## function evaluations 11
+    ## segments explored during Cauchy searches 8
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 0.000144637
+    ## final function value -11.1502
+    ## 
+    ## F = -11.1502
+    ## final  value -11.150214 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0006635865 0.0006088488 0.0005266163 0.0004803086 0.0005610908
+    ##  [6] 0.0005671853 0.0005671853 0.0005671853 0.0005671853 0.0005671853
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01582483 2.58658 
+    ##   - best initial criterion value(s) :  8.566319 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -8.5663  |proj g|=       2.4389
+    ## At iterate     1  f =      -9.3568  |proj g|=        1.0441
+    ## At iterate     2  f =      -9.6935  |proj g|=        0.8175
+    ## At iterate     3  f =      -10.241  |proj g|=       0.67216
+    ## At iterate     4  f =      -10.305  |proj g|=       0.45269
+    ## At iterate     5  f =      -10.341  |proj g|=       0.33838
+    ## At iterate     6  f =      -10.346  |proj g|=        0.2819
+    ## At iterate     7  f =       -10.35  |proj g|=      0.060882
+    ## At iterate     8  f =       -10.35  |proj g|=      0.016462
+    ## At iterate     9  f =       -10.35  |proj g|=    0.00065819
+    ## At iterate    10  f =       -10.35  |proj g|=    7.3178e-05
+    ## 
+    ## iterations 10
+    ## function evaluations 13
+    ## segments explored during Cauchy searches 13
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 7.31777e-05
+    ## final function value -10.3497
+    ## 
+    ## F = -10.3497
+    ## final  value -10.349671 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0003749209 0.0003344754 0.0003436513 0.0003158729 0.0003651903
+    ##  [6] 0.0003469849 0.0003392235 0.0003392235 0.0003392235 0.0003392235
+    ## [11] 0.0003392235
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01670866 2.805063 
+    ##   - best initial criterion value(s) :  12.89376 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -12.894  |proj g|=      0.77862
+    ## At iterate     1  f =      -12.942  |proj g|=       0.63152
+    ## At iterate     2  f =      -13.094  |proj g|=        1.3284
+    ## At iterate     3  f =      -13.214  |proj g|=         1.259
+    ## At iterate     4  f =       -13.42  |proj g|=       0.21807
+    ## At iterate     5  f =      -13.425  |proj g|=      0.094969
+    ## At iterate     6  f =      -13.425  |proj g|=      0.015896
+    ## At iterate     7  f =      -13.425  |proj g|=    0.00071227
+    ## At iterate     8  f =      -13.425  |proj g|=    2.6452e-05
+    ## 
+    ## iterations 8
+    ## function evaluations 10
+    ## segments explored during Cauchy searches 9
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 2.64521e-05
+    ## final function value -13.4251
+    ## 
+    ## F = -13.4251
+    ## final  value -13.425085 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0005011100 0.0006635865 0.0006088488 0.0005266163 0.0004803086
+    ##  [6] 0.0005610908 0.0005671853 0.0005671853 0.0005671853 0.0005671853
+    ## [11] 0.0005671853
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01650937 2.777449 
+    ##   - best initial criterion value(s) :  11.54925 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -11.549  |proj g|=       2.4802
+    ## At iterate     1  f =      -12.264  |proj g|=        1.0554
+    ## At iterate     2  f =      -12.455  |proj g|=       0.53784
+    ## At iterate     3  f =      -12.707  |proj g|=       0.44618
+    ## At iterate     4  f =      -12.846  |proj g|=        2.4589
+    ## At iterate     5  f =      -12.983  |proj g|=       0.44612
+    ## At iterate     6  f =      -13.006  |proj g|=       0.23586
+    ## At iterate     7  f =      -13.011  |proj g|=       0.22048
+    ## At iterate     8  f =      -13.014  |proj g|=      0.085832
+    ## At iterate     9  f =      -13.015  |proj g|=      0.017194
+    ## At iterate    10  f =      -13.015  |proj g|=     0.0042853
+    ## At iterate    11  f =      -13.015  |proj g|=    0.00040626
+    ## At iterate    12  f =      -13.015  |proj g|=     1.517e-06
+    ## 
+    ## iterations 12
+    ## function evaluations 15
+    ## segments explored during Cauchy searches 15
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 1.51699e-06
+    ## final function value -13.0147
+    ## 
+    ## F = -13.0147
+    ## final  value -13.014684 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0003311965 0.0003749209 0.0003344754 0.0003436513 0.0003158729
+    ##  [6] 0.0003651903 0.0003469849 0.0003392235 0.0003392235 0.0003392235
+    ## [11] 0.0003392235 0.0003392235
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01683845 2.94033 
+    ##   - best initial criterion value(s) :  14.56848 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -14.568  |proj g|=       2.1051
+    ## At iterate     1  f =      -15.008  |proj g|=       0.60617
+    ## At iterate     2  f =      -15.218  |proj g|=        0.9523
+    ## At iterate     3  f =      -15.661  |proj g|=         2.797
+    ## At iterate     4  f =      -16.029  |proj g|=        1.8045
+    ## At iterate     5  f =      -16.061  |proj g|=       0.87013
+    ## At iterate     6  f =      -16.075  |proj g|=       0.32004
+    ## At iterate     7  f =      -16.076  |proj g|=       0.15091
+    ## At iterate     8  f =      -16.076  |proj g|=       0.05735
+    ## At iterate     9  f =      -16.076  |proj g|=      0.007631
+    ## At iterate    10  f =      -16.076  |proj g|=    3.3577e-05
+    ## At iterate    11  f =      -16.076  |proj g|=    3.3454e-05
+    ## 
+    ## iterations 11
+    ## function evaluations 14
+    ## segments explored during Cauchy searches 13
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 3.34542e-05
+    ## final function value -16.0761
+    ## 
+    ## F = -16.0761
+    ## final  value -16.076108 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0005068585 0.0005011100 0.0006635865 0.0006088488 0.0005266163
+    ##  [6] 0.0004803086 0.0005610908 0.0005671853 0.0005671853 0.0005671853
+    ## [11] 0.0005671853 0.0005671853
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01769161 2.938481 
+    ##   - best initial criterion value(s) :  14.33926 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -14.339  |proj g|=       2.6581
+    ## At iterate     1  f =      -14.533  |proj g|=         1.666
+    ## At iterate     2  f =      -14.709  |proj g|=       0.74114
+    ## At iterate     3  f =      -14.763  |proj g|=        0.8925
+    ## At iterate     4  f =      -14.782  |proj g|=       0.26788
+    ## At iterate     5  f =      -14.784  |proj g|=        0.1078
+    ## At iterate     6  f =      -14.785  |proj g|=       0.11896
+    ## At iterate     7  f =      -14.785  |proj g|=      0.052008
+    ## At iterate     8  f =      -14.785  |proj g|=    0.00044003
+    ## At iterate     9  f =      -14.785  |proj g|=    1.2917e-05
+    ## 
+    ## iterations 9
+    ## function evaluations 11
+    ## segments explored during Cauchy searches 12
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 1.29169e-05
+    ## final function value -14.7855
+    ## 
+    ## F = -14.7855
+    ## final  value -14.785473 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0001547161 0.0003749209 0.0003344754 0.0003436513 0.0003158729
+    ##  [6] 0.0003651903 0.0003469849 0.0003392235 0.0003392235 0.0003392235
+    ## [11] 0.0003392235 0.0003392235
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.016901 2.952755 
+    ##   - best initial criterion value(s) :  13.23158 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -13.232  |proj g|=       2.3931
+    ## At iterate     1  f =      -13.908  |proj g|=        2.8103
+    ## At iterate     2  f =       -14.19  |proj g|=        1.4192
+    ## At iterate     3  f =      -14.768  |proj g|=        2.1177
+    ## At iterate     4  f =      -15.725  |proj g|=       0.61822
+    ## At iterate     5  f =      -15.745  |proj g|=       0.15007
+    ## At iterate     6  f =      -15.747  |proj g|=       0.10511
+    ## At iterate     7  f =      -15.747  |proj g|=      0.015848
+    ## At iterate     8  f =      -15.747  |proj g|=    0.00066494
+    ## At iterate     9  f =      -15.747  |proj g|=    7.2465e-06
+    ## 
+    ## iterations 9
+    ## function evaluations 13
+    ## segments explored during Cauchy searches 11
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 7.24652e-06
+    ## final function value -15.7474
+    ## 
+    ## F = -15.7474
+    ## final  value -15.747353 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0002824318 0.0005011100 0.0006635865 0.0006088488 0.0005266163
+    ##  [6] 0.0004803086 0.0005610908 0.0005671853 0.0005671853 0.0005671853
+    ## [11] 0.0005671853 0.0005671853
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01790448 2.97088 
+    ##   - best initial criterion value(s) :  12.58215 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -12.582  |proj g|=       2.7031
+    ## At iterate     1  f =       -13.41  |proj g|=        1.0326
+    ## At iterate     2  f =      -14.009  |proj g|=       0.85273
+    ## At iterate     3  f =      -14.832  |proj g|=       0.66646
+    ## At iterate     4  f =      -15.064  |proj g|=        1.3996
+    ## At iterate     5  f =      -15.282  |proj g|=       0.62242
+    ## At iterate     6  f =      -15.405  |proj g|=       0.96307
+    ## At iterate     7  f =      -15.546  |proj g|=       0.58379
+    ## At iterate     8  f =      -15.583  |proj g|=       0.11342
+    ## At iterate     9  f =      -15.585  |proj g|=      0.035065
+    ## At iterate    10  f =      -15.585  |proj g|=       0.02012
+    ## At iterate    11  f =      -15.585  |proj g|=    0.00047863
+    ## At iterate    12  f =      -15.585  |proj g|=    4.8212e-06
+    ## 
+    ## iterations 12
+    ## function evaluations 16
+    ## segments explored during Cauchy searches 14
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 4.82119e-06
+    ## final function value -15.585
+    ## 
+    ## F = -15.585
+    ## final  value -15.584953 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0003428041 0.0001547161 0.0003749209 0.0003344754 0.0003436513
+    ##  [6] 0.0003158729 0.0003651903 0.0003469849 0.0003392235 0.0003392235
+    ## [11] 0.0003392235 0.0003392235 0.0003392235
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01738981 2.991609 
+    ##   - best initial criterion value(s) :  16.90315 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -16.903  |proj g|=        2.406
+    ## At iterate     1  f =      -18.463  |proj g|=       0.58954
+    ## At iterate     2  f =      -18.538  |proj g|=       0.96635
+    ## At iterate     3  f =      -18.592  |proj g|=        1.5454
+    ## At iterate     4  f =      -18.603  |proj g|=       0.61169
+    ## At iterate     5  f =      -18.605  |proj g|=      0.095302
+    ## At iterate     6  f =      -18.606  |proj g|=      0.038965
+    ## At iterate     7  f =      -18.606  |proj g|=      0.043338
+    ## At iterate     8  f =      -18.606  |proj g|=      0.025708
+    ## At iterate     9  f =      -18.606  |proj g|=     0.0037794
+    ## At iterate    10  f =      -18.606  |proj g|=    0.00030972
+    ## At iterate    11  f =      -18.606  |proj g|=     6.609e-06
+    ## 
+    ## iterations 11
+    ## function evaluations 14
+    ## segments explored during Cauchy searches 13
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 6.60905e-06
+    ## final function value -18.6059
+    ## 
+    ## F = -18.6059
+    ## final  value -18.605857 
+    ## converged
+    ## 
+    ## optimisation start
+    ## ------------------
+    ## * estimation method   : MLE 
+    ## * optimisation method : BFGS 
+    ## * analytical gradient : used
+    ## * trend model : ~1
+    ## * covariance model : 
+    ##   - type :  gauss 
+    ##   - noise variances :
+    ##  [1] 0.0004349449 0.0002824318 0.0005011100 0.0006635865 0.0006088488
+    ##  [6] 0.0005266163 0.0004803086 0.0005610908 0.0005671853 0.0005671853
+    ## [11] 0.0005671853 0.0005671853 0.0005671853
+    ##   - parameters lower bounds :  1e-10 1e-10 
+    ##   - parameters upper bounds :  3.141593 2 
+    ##   - variance bounds :  0.01816458 3.079909 
+    ##   - best initial criterion value(s) :  17.28535 
+    ## 
+    ## N = 3, M = 5 machine precision = 2.22045e-16
+    ## At X0, 0 variables are exactly at the bounds
+    ## At iterate     0  f=      -17.285  |proj g|=      0.45393
+    ## At iterate     1  f =      -17.321  |proj g|=       0.34272
+    ## At iterate     2  f =      -17.443  |proj g|=       0.96557
+    ## At iterate     3  f =      -17.523  |proj g|=       0.17588
+    ## At iterate     4  f =      -17.525  |proj g|=       0.13341
+    ## At iterate     5  f =      -17.527  |proj g|=      0.017297
+    ## At iterate     6  f =      -17.527  |proj g|=    0.00096585
+    ## At iterate     7  f =      -17.527  |proj g|=    0.00014634
+    ## 
+    ## iterations 7
+    ## function evaluations 11
+    ## segments explored during Cauchy searches 9
+    ## BFGS updates skipped 0
+    ## active bounds at final generalized Cauchy point 1
+    ## norm of the final projected gradient 0.000146338
+    ## final function value -17.5271
+    ## 
+    ## F = -17.5271
+    ## final  value -17.527070 
     ## converged
 
 The following code reproduce the plots from the paper (!!!!!!!!!!!!!!!
