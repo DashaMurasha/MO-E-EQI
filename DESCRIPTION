@@ -1,9 +1,9 @@
-Package: EQIOptim
+Package: MOEEQI
 Type: Package
-Title: EQIOptim
+Title: Multi-objective Euclidean expected quantile improvement
 Version: 0.1.0
-Depends: R (>= 3.4.4), MASS, DiceKriging
-Imports: MASS, DiceKriging
+Depends: R (>= 3.4.4), MASS, DiceKriging, prodlim
+Imports: MASS, DiceKriging, prodlim
 Author@R: person("Daria", "Semochkina", email = "d.semochkina@soton.ac.uk", role="aut")
 Maintainer: Daria Semochkina <d.semochkina@soton.ac.uk>
 Description: Muti-objective optimisation using expected quantile optimisation

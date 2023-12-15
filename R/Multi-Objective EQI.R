@@ -1,21 +1,4 @@
-#  Calculates the expection of Objective 1 and Objective 2 (functions of X) improving on the Pareto front
-#
-#  Inputs:
-# 	newdata - (# new sample points) x k data frame of new design points to test for EQI
-# 	design_X - n x k data frame of sample locations for each objective (same locations for both objectives at the moment)
-#
-#  Global variables used:
-#   Option - string: 'NegLogExpImp' or 'NegProbImp'
-#   model_f1, model_f2
-#
-#  Outputs:
-#   metric - -EQI or -log10(EQI), depending on the Option (So far only implemented Option=='NegLogExpImp')
-#   Pq1,Pq2 - non-dominated objective function values on the Pareto front
-#   PX - locations of non-dominated solutions
-#   s_Q1, s_Q2 - standard deviations at the proposed (newdata) points
-#
-#  Calls:
-#   WRITE WHAT'S BEING CALLED
+#  Calculates the expectation of Objective 1 and Objective 2 (functions of X) improving on the Pareto front
 mult_EQI = function(newdata,design_X, model_f1, model_f2, beta, tau_new, ConstraintInfo=NULL){
   
   # model_f1=model_dead; model_f2=model_cost
@@ -99,7 +82,7 @@ mult_EQI = function(newdata,design_X, model_f1, model_f2, beta, tau_new, Constra
     PI=(PITerm1+PITerm3)
   }
   
-  if (Option=='NegLogExpImp'){
+  if (Option=='NegLogEQI'){
     # Qbar1 calculation
     Qbar1Term1=m_Q1*pnorm((Pq1[1]-m_Q1)/s_Q1)-
       s_Q1*dnorm((Pq1[1]-m_Q1)/s_Q1)
@@ -166,7 +149,7 @@ mult_EQI = function(newdata,design_X, model_f1, model_f2, beta, tau_new, Constra
     #                                    which(predict.km(model_f2, newdata, type="UK")$sd<=epsilon_noise))
     # if (length(low_sd_points)!=0) EQI[low_sd_points]=0
   }
-  if (Option=='NegLogExpImp'){
+  if (Option=='NegLogEQI'){
     
     metric=-log10(EQI)
     

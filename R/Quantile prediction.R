@@ -1,5 +1,3 @@
-# Predicted values of mean and sd for EQI for an objective
-
 pred_Q <- function(x, model, beta, tau_new) {
   pred_f <- predict.km(model, x, type="UK")
   m_n <- pred_f$mean

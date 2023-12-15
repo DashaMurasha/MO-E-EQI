@@ -1,4 +1,39 @@
-library(MOEEQI)
+---
+  title: "MO-E-EQI Notebook"
+output: html_notebook
+---
+  
+Install R packages from git
+  
+In this example we install our package MOEEQI
+  
+This is the standard way to install packages that are on the R library cran (our package is not on this).
+We need the standard package devtools to add our package off git.
+
+```{install 'devtools' package}
+install.packages("devtools")
+```
+
+This is the standard way to import an R package into the current session.
+
+```{library 'devtools' package}
+library("devtools")
+```
+
+Now we need to build our package MOEEQI from git.
+```{install 'MOEEQI' package from git}
+install_github("DashaMurasha/MO-E-EQI")
+```
+
+Note that the above instructions should only need running once in order to install our package.  After which we can just run:
+```{library 'MOEEQI' package}
+library("MOEEQI")
+```
+
+Next, we move on to the example accompanying the paper (!!!!!!!!!!!!!!! ref !!!!!!!!!!!!!!!!!!)
+
+We first set the level of noise and define out funstions 
+```{}
 # Set a
 a=0.25
 # Test functions
@@ -15,14 +50,21 @@ f2 <- function(x,theta){
   theta1 <- unlist(theta[,1])
   theta2 <- unlist(theta[,2])
   1-cos(x1)+x2/3+a*sin(theta1)+theta2/3
-
+  
 }
+```
+Choose the number of repetitions of each model run
+```{}
 # Number of repetitions of each observation (model run)
 MC_sample_size <- 100
-
+```
+Choose the number of steps of the MO-E-EsQI sequential design loop
+```{}
 # Computational budget (steps in the loop)
 Nsteps <- 9
-# Select initial design points.
+```
+Select initial design points.
+```{}
 # Input parameters ranges
 x_c_1_range <- c(0, pi/2)
 x_c_2_range <-  c(0, 1)
@@ -35,31 +77,42 @@ design_X <- MaxPro::MaxProLHD( n = n_sample_points, p = 2, itermax = 20 )
 design_X <- MaxPro::MaxPro( InitialDesign = design_X$Design, iteration = 10 )$Design
 
 design_X <- as.matrix(t(t(design_X)*c(diff(x_c_1_range), diff(x_c_2_range))+
-                c(x_c_1_range[1],x_c_2_range[1])))
+                          c(x_c_1_range[1],x_c_2_range[1])))
 # Make it a data.frame
 orig_design_X <- data.frame(x=design_X)
+```
 
-# Metric option # Others are not implemented at the moment
-Option <- 'NegLogExpImp' # I'm not entirely sure if that's usefull
+Choose the metric option. Currently two options available,  -log(EQI) ('NegLogEQI') or -EQI ('NegEQI')
+```{}
+Option <- 'NegLogEQI'
+```
 
-# select exploration/exploitation ratio (see EQI paper for details)
+select quantile level (see EQI (!!!!!!!!!!!!!!! ref !!!!!!!!!!!!!!!!!!) for details)
+```{}
 beta <- .8
-# Run the model at the original design points orig_design_X
+```
+
+Define some objects to store results
+```{}
 y1_orig <- y2_orig <- epsilons_orig <- NULL
 y1_all <- y2_all <- NULL
 var1 <- var2 <- NULL
 y_plot <- NULL
-# mu_1 <- 0
-# sigma_1 <- 1
+```
+Define the noise level for the second environmental variable
+```{}
 mu_2 <- 0
 sigma_2 <- 0.5
-# Run the model at design points
+```
+
+Run the model at the original design points
+```{}
 for (i in 1:n_sample_points) {
   # data_points <- expand.grid(theta=orig_design_X$theta[i],x=rnorm(MC_sample_size,0.4,1))
   data_points <- cbind(x <- matrix(rep(orig_design_X[i,],each=MC_sample_size),MC_sample_size,2),
                        theta.1=runif(MC_sample_size,-pi,pi),
                        theta.2=rnorm(MC_sample_size,mu_2,sigma_2))
-
+  
   y1_orig <- c(y1_orig, mean(f1(data_points[,1:2],data_points[,3:4])))
   y2_orig <- c(y2_orig, mean(f2(data_points[,1:2],data_points[,3:4])))
   y1_all <- rbind(y1_all, unlist(c(f1(data_points[,1:2],data_points[,3:4]), orig_design_X[i,])))
@@ -67,58 +120,76 @@ for (i in 1:n_sample_points) {
   var1 <- c(var1,var(f1(data_points[,1:2],data_points[,3:4])))
   var2 <- c(var2,var(f2(data_points[,1:2],data_points[,3:4])))
 }
-# Provide noise sd for both objectives. Note that in this example noise in cost is much higher.
+```
+Provide noise sd for both objectives.
+```{}
 noise_sd <- sqrt(c(mean(var1),mean(var2)))
 noise_orig_design_sd <- cbind(apply(y1_all[,1:MC_sample_size],1,sd),
                               apply(y2_all[,1:MC_sample_size],1,sd))
 
-
+```{}
+Write original design and the starting point of the final design.
+```{}
 design_X <- orig_design_X
-
-# Calculate future noise. Note that tau is standard deviation (not variance).
+```
+Calculate future noise. Note that tau is standard deviation (not variance).
+```{}
 tau_new <- tau_new_func(MC_sample_size, noise_sd, 1)
 tau_orig_design <- tau_new_func(MC_sample_size, noise_sd, nrow(orig_design_X))
 # noise.var is the only way to have a stochastic emulator
 noise.var <- list(tau1 = tau_orig_design$tau1^2,
                   tau2 = tau_orig_design$tau2^2)
-
-# Fit emulators
+```
+Fit emulators
+```{}
 model_f1 <- DiceKriging::km(formula=~1, design=orig_design_X, response=y1_orig, covtype="gauss", noise.var=noise.var$tau1)
 model_f2 <- DiceKriging::km(formula=~1, design=orig_design_X, response=y2_orig, covtype="gauss", noise.var=noise.var$tau2)
-
-# y1_new and y2_new will record new observations, prompted by EQI
+```{}
+y1_new and y2_new will record new observations, prompted by EQI
+```{}
 y1_new <- y1_orig
 y2_new <- y2_orig
 y_plot <- cbind(y1=as.vector(y1_new),y2=as.vector(y2_new), x.1=orig_design_X[,1], x.2=orig_design_X[,2])
+```
 
-# This is EQI optomisation loop
+Now we move to the EQI loop to sequentially add desing points to alter the Pareto front.
 
-# select new points to calculate EQI at. Covers all the points in the ranges.
+First, we select new points to calculate EQI at. Covers all the points in the ranges.
+```{}
 newdata <- expand.grid(x.1 = seq(from=x_c_1_range[1], to=x_c_1_range[2], length.out = 100),
                        x.2 = seq(from=x_c_2_range[1], to=x_c_2_range[2], length.out = 100))
 n_sample <- length(newdata[,1])
+```
 
-# The next line checks which of the current design points exists in the newdata. This is nessessary for tau_new function
+The next line checks which of the current design points exists in the newdata. This is nessessary for tau_new function
+```{}
 des_rep <- design_repetitions(newdata, design_X)
-# The next line calculates the default tau_new if there were no repetitions
+```
+The next line calculates the default tau_new if there were no repetitions.
+```{}
 tau_new <- tau_new_func(MC_sample_size, noise_sd, n_sample)
-# Update the design locations that were repeated
+```
+Update the design locations that were repeated
+```{}
 if(sum(des_rep)!=0){
   tau_new[des_rep[,2],] <- cbind(tau1=sqrt(tau_eq_sqrd(noise.var$tau1[des_rep[,1]],noise.var$tau1[des_rep[,1]])),
                                  tau2=sqrt(tau_eq_sqrd(noise.var$tau2[des_rep[,1]],noise.var$tau2[des_rep[,1]])))
 }
-
-#Add constraint info for objectives
+```
+Add constraint info for objectives (currently set to no constraints).
+```{}
 ConstraintInfo <- NULL
 # ConstraintInfo$ConstraintLimits<-matrix(c(2, 2),1,2)
 # #Current observations to be compared against ConstraintLimits
 # ConstraintInfo$y <- cbind(y1_new, y2_new)
-
+```{}
+Start the EQI loop
+```{}
 reps <- NULL
 for (i in 1:Nsteps) {
   #calculate EQI metric. Note that other outputs are Pareto front, design and quantile sd
   EQI_newdata <- mult_EQI(newdata,design_X, model_f1, model_f2, beta, tau_new)
-
+  
   #stopping criterion
   # If all expected improvements are 0 -- stop (i.e. -log(0)=Inf)
   if (sum(EQI_newdata$metric==Inf, na.rm = T)==n_sample) break
@@ -138,15 +209,15 @@ for (i in 1:Nsteps) {
     # Update the design_X
     design_X <- rbind(impr_x,design_X)
   }
-
-
+  
+  
   # Run the model at the new design point (MC over x)
   data_points <-cbind(x <- matrix(rep(design_X[1,],each=MC_sample_size),MC_sample_size,2),
                       theta.1=runif(MC_sample_size,-pi,pi),
                       theta.2=rnorm(MC_sample_size,mu_2,sigma_2))
-
-
-
+  
+  
+  
   if (is.na(repetition)) {
     # Update observations
     y1_new <- c(mean(f1(data_points[,1:2],data_points[,3:4])), y1_new)
@@ -171,7 +242,7 @@ for (i in 1:Nsteps) {
     design_X <- design_X[-1,]
     y1_new[repetition] <- mean_obs(mean(f1(data_points[,1:2],data_points[,3:4])),y1_new[repetition],noise_sd[1]^2/MC_sample_size,noise.var$tau1[repetition])
     y2_new[repetition] <- mean_obs(mean(f2(data_points[,1:2],data_points[,3:4])),y2_new[repetition],noise_sd[2]^2/MC_sample_size,noise.var$tau2[repetition])
-
+    
     # Update the tunable future noise
     tau_at_best_X <- tau_new_func(MC_sample_size, c(sd(y1_all[1,1:MC_sample_size]),sd(y2_all[1,1:MC_sample_size])), 1)
     tau_new[best_X,] <- cbind(tau1=sqrt(tau_eq_sqrd((tau_new[best_X,]$tau1)^2,tau_at_best_X$tau1^2)),
@@ -179,14 +250,16 @@ for (i in 1:Nsteps) {
     # Update the observations noise
     noise.var$tau1[repetition] <- tau_eq_sqrd(noise.var$tau1[repetition], tau_at_best_X$tau1^2)
     noise.var$tau2[repetition] <- tau_eq_sqrd(noise.var$tau2[repetition], tau_at_best_X$tau2^2)
-
+    
     reps <- c(reps, repetition)
   }
   model_f1 <- km(formula=~1, design=design_X, response=y1_new, covtype="gauss", noise.var=noise.var$tau1)
   model_f2 <- km(formula=~1, design=design_X, response=y2_new, covtype="gauss", noise.var=noise.var$tau2)
 }
+```
 
-
+The following code reproduce the plots from the paper (!!!!!!!!!!!!!!! ref !!!!!!!!!!!!!!!!!!) . Note that the legend is conditional on whether there were repeated observations.
+```{}
 ###################################################################################################
 #################################              Plot 2-D           #################################
 ###################################################################################################
@@ -277,16 +350,16 @@ for (i in 1:dim(design_X)[1]){
 }
 # Add legend
 if(length(legend_ind)>1){
-legend(x= "topright",
-       legend=c('observations','EQI pareto front',
-                'uncertainty', "new design points",
-                "real pareto front", "repeated observations",
-                "pooled observations"),
-       col=c(observ, pareto, uncert, 2, purple, 1, 2),
-       pch = c(19, 19, 19, 19, NA, 1, NA),
-       lty=c(NA, 1 , NA, NA, 1,NA, 3),
-       lwd=c(6,6,.1, 6, 6,2,2)
-)
+  legend(x= "topright",
+         legend=c('observations','EQI pareto front',
+                  'uncertainty', "new design points",
+                  "real pareto front", "repeated observations",
+                  "pooled observations"),
+         col=c(observ, pareto, uncert, 2, purple, 1, 2),
+         pch = c(19, 19, 19, 19, NA, 1, NA),
+         lty=c(NA, 1 , NA, NA, 1,NA, 3),
+         lwd=c(6,6,.1, 6, 6,2,2)
+  )
 }else{
   legend(x= "topright", 
          legend=c('observations','EQI pareto front',
@@ -297,8 +370,9 @@ legend(x= "topright",
          lwd=c(6,6,.1, 6)
   )
 }
-
-
+```
+New design points plot.
+```{}
 ###################################################################################################
 #################################     Sequential design  points   #################################
 ###################################################################################################
@@ -306,11 +380,12 @@ legend(x= "topright",
 plot(y_plot[(Nsteps+1):nrow(y_plot),3],y_plot[(Nsteps+1):nrow(y_plot),4], xlab=expression(x[1]), ylab=expression(x[2]),
      xlim=(x_c_1_range+c(-.1,.1)), ylim=(x_c_2_range+c(-.1,.1)), main=paste("Original and added new design points") , pch=19, cex=3, col=observ)
 for(i in Nsteps:1){
-text(y_plot[i,4]~y_plot[i,3], labels=nrow(y_plot)-nrow(orig_design_X)-i+1, cex=1.5, font=2, pos=4, offset=1)
-points(y_plot[i,3],y_plot[i,4], xlab=expression(x[1]), ylab=expression(x[2]), pch=19, cex=3, col=2)
+  text(y_plot[i,4]~y_plot[i,3], labels=nrow(y_plot)-nrow(orig_design_X)-i+1, cex=1.5, font=2, pos=4, offset=1)
+  points(y_plot[i,3],y_plot[i,4], xlab=expression(x[1]), ylab=expression(x[2]), pch=19, cex=3, col=2)
 }
-
-
+```
+Simple plot.
+```{}
 ###################################################################################################
 ################################              Simple plot           ###############################
 ###################################################################################################
@@ -355,5 +430,5 @@ legend(x= "topright",
        pch = c(19, 19, 19, NA),
        lty=c(NA, 1 , NA, 1),
        lwd=c(6,6,.1, 6)
-       )
-
+)
+```

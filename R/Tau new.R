@@ -1,4 +1,3 @@
-#This is for calculating the future noise with homogenious noise v (sd) and n_rep replications at every step
 tau_new_func <- function(n_rep, tau,l) {
   tau1 <- sqrt(tau[1]^2/(n_rep))
   tau2 <- sqrt(tau[2]^2/(n_rep))
