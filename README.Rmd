@@ -14,8 +14,13 @@ This repository provides R package to caclulate multi-objective Euclidian expect
 
 First install our package MOEEQI from git. We need the standard package 'devtools' to add our package off git.
 
+<<<<<<< HEAD
 ```{r, results='hide'}
 #install.packages("devtools")
+=======
+```{r}
+install.packages("devtools")
+>>>>>>> 4de399b44d388a6b861a5c462cfea9ec136543ed
 ```
 
 This is the standard way to import an R package into the current session.
