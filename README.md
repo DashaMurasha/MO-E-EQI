@@ -1,4 +1,4 @@
----
+xx---
 title: "MO-E-EQI"
 output: html_document
 date: "2023-12-15"
@@ -36,7 +36,7 @@ Note that the above instructions should only need running once in order to insta
 library("MOEEQI")
 ```
 
-Next, we move on to the example accompanying the paper (!!!!!!!!!!!!!!! ref !!!!!!!!!!!!!!!!!!)
+Next, we move on to the example accompanying the paper (!!!!!!!!!!!!!!! ref !!!!!!!!!!!!!!!!!!). This example is available in the 'test_function_EQI.R' file.
 
 We first set the level of noise and define out funstions 
 ```{r}
