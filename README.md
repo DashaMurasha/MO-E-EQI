@@ -13,10 +13,11 @@ This repository provides R package to caclulate multi-objective
 Euclidian expected quantile improvement (MO-E-EQI) presented in the
 manuscript.
 
+A copy of this README.md file is available in the R Markdown file
+“README.Rmd”.
+
 First install our package MOEEQI from git. We need the standard package
 ‘devtools’ to add our package off git.
-
-\<\<\<\<\<\<\< HEAD
 
 ``` r
 #install.packages("devtools")
@@ -34,10 +35,17 @@ library("devtools")
 Now we need to build our package MOEEQI from git.
 
 ``` r
-install_github("DashaMurasha/MO-E-EQI")
+install_github("StatsDasha/MO-E-EQI")
 ```
 
-    ## Downloading GitHub repo DashaMurasha/MO-E-EQI@HEAD
+    ## Downloading GitHub repo StatsDasha/MO-E-EQI@HEAD
+
+Alternatiely, one can download the full project from github and install
+using
+
+``` r
+#devtools::install("path/to/package/folder")
+```
 
 Note that the above instructions should only need running once in order
 to install our package. After which we can just run:
@@ -438,7 +446,7 @@ if(length(legend_ind)>1){
 }
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-25-1.png)<!-- --> New design
+![](README_files/figure-gfm/unnamed-chunk-26-1.png)<!-- --> New design
 points plot.
 
 ``` r
@@ -454,7 +462,7 @@ for(i in Nsteps:1){
 }
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-26-1.png)<!-- --> Simple plot.
+![](README_files/figure-gfm/unnamed-chunk-27-1.png)<!-- --> Simple plot.
 
 ``` r
 ###################################################################################################
@@ -504,4 +512,4 @@ legend(x= "topright",
 )
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
