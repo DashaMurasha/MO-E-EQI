@@ -1,5 +1,5 @@
 #  Calculates the expectation of Objective 1 and Objective 2 (functions of X) improving on the Pareto front
-mult_EQI = function(newdata,design_X, model_f1, model_f2, beta, tau_new, ConstraintInfo=NULL){
+mult_EQI = function(newdata,design_X, model_f1, model_f2, beta, tau_new, ConstraintInfo=NULL, Option='NegLogEQI'){
   
   # model_f1=model_dead; model_f2=model_cost
   
@@ -12,7 +12,7 @@ mult_EQI = function(newdata,design_X, model_f1, model_f2, beta, tau_new, Constra
 
   if (!is.null(ConstraintInfo)) {
     qtemp <- cbind(q1temp,q2temp)
-    sdtemp <- sqrt(cbind(noise.var$tau1,noise.var$tau2))
+    sdtemp <- sqrt(cbind(model_f1@noise.var,model_f2@noise.var))
     for (i in 1:length(q1temp)){
       for (j in 1:length(ConstraintInfo$ConstraintLimits)){
         #We check if all the sampling points satisfy given constraints
