@@ -14,7 +14,7 @@ This repository provides an R package to calculate multi-objective Euclidian exp
 
 A copy of this README.md file is available in the R Markdown file "README.Rmd".
 
-First install our package MOEEQI from Github. We need the standard package 'devtools' to add our package off Github.
+First install our package MOEEQI from GitHub. We need the standard package 'devtools' to add our package off GitHub.
 
 ```{r, results='hide'}
 #install.packages("devtools")
@@ -26,12 +26,12 @@ This is the standard way to import an R package into the current session
 library("devtools")
 ```
 
-Now we need to build our package MOEEQI from Github
+Now we need to build our package MOEEQI from GitHub
 ```{r, results='hide'}
 install_github("StatsDasha/MO-E-EQI")
 ```
 
-Alternatiely, one can download the full project from Github and install using
+Alternatiely, one can download the full project from GitHub and install using
 ```{r,, results='hide'}
 #devtools::install("path/to/package/folder")
 ```

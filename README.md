@@ -16,8 +16,8 @@ manuscript.
 A copy of this README.md file is available in the R Markdown file
 “README.Rmd”.
 
-First install our package MOEEQI from Github. We need the standard
-package ‘devtools’ to add our package off Github.
+First install our package MOEEQI from GitHub. We need the standard
+package ‘devtools’ to add our package off GitHub.
 
 ``` r
 #install.packages("devtools")
@@ -31,15 +31,16 @@ library("devtools")
 
     ## Loading required package: usethis
 
-Now we need to build our package MOEEQI from Github
+Now we need to build our package MOEEQI from GitHub
 
 ``` r
 install_github("StatsDasha/MO-E-EQI")
 ```
 
-    ## Downloading GitHub repo StatsDasha/MO-E-EQI@HEAD
+    ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (a770c16a) has not changed since last install.
+    ##   Use `force = TRUE` to force installation
 
-Alternatiely, one can download the full project from Github and install
+Alternatiely, one can download the full project from GitHub and install
 using
 
 ``` r
