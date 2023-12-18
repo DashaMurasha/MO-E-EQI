@@ -37,7 +37,7 @@ Now we need to build our package MOEEQI from git.
 install_github("StatsDasha/MO-E-EQI")
 ```
 
-    ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (0f22625a) has not changed since last install.
+    ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (34d21c91) has not changed since last install.
     ##   Use `force = TRUE` to force installation
 
 Alternatiely, one can download the full project from github and install
@@ -273,7 +273,7 @@ Start the EQI loop
 reps <- NULL
 for (i in 1:Nsteps) {
   #calculate EQI metric. Note that other outputs are Pareto front, design and quantile sd
-  EQI_newdata <- mult_EQI(newdata,design_X, model_f1, model_f2, beta, tau_new)
+  EQI_newdata <- mult_EQI(newdata,design_X, model_f1, model_f2, beta, tau_new, Option=Option)
   
   #stopping criterion
   # If all expected improvements are 0 -- stop (i.e. -log(0)=Inf)
@@ -388,7 +388,7 @@ pareto <- green
 observ <- darkgrey
 
 #Get the EQI's outputs
-EQI_newdata <- mult_EQI(newdata,design_X, model_f1, model_f2, beta, tau_new, ConstraintInfo)
+EQI_newdata <- mult_EQI(newdata,design_X, model_f1, model_f2, beta, tau_new, ConstraintInfo, Option=Option)
 p1 <- predict.km(model_f1, newdata, "UK")
 p2 <- predict.km(model_f2, newdata, "UK")
 
