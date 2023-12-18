@@ -4,19 +4,19 @@ mult_EQI = function(newdata,design_X, model_f1, model_f2, beta, tau_new, Constra
   # model_f1=model_dead; model_f2=model_cost
   
   k=length(design_X[1,])
-  
-  #Option=ModelInfo.Option
-  
+
   #find points which satisfy constraint (if present)
   q1temp=q_mean(design_X, model_f1, beta)
   q2temp=q_mean(design_X, model_f2, beta)
   Xtemp=design_X
-  
+
   if (!is.null(ConstraintInfo)) {
+    qtemp <- cbind(q1temp,q2temp)
+    sdtemp <- sqrt(cbind(noise.var$tau1,noise.var$tau2))
     for (i in 1:length(q1temp)){
       for (j in 1:length(ConstraintInfo$ConstraintLimits)){
         #We check if all the sampling points satisfy given constraints
-        if (ConstraintInfo$y[i,j]>ConstraintInfo$ConstraintLimit[j]) {
+        if (qtemp[i,j]>ConstraintInfo$ConstraintLimit[j]+qnorm(beta)*sdtemp[i,j]) {
           q1temp[i]=NaN
           q2temp[i]=NaN
         }
@@ -37,20 +37,7 @@ mult_EQI = function(newdata,design_X, model_f1, model_f2, beta, tau_new, Constra
   Pq1 <- find_pareto$y1
   Pq2 <- find_pareto$y2
   Pnum <- length(find_pareto$y2)
-  # b=order(q1temp)
-  # PX <- Xtemp[b[1],1:k]
-  # Pq1 <- q1temp[b[1]]
-  # Pq2 <- q2temp[b[1]]
-  # Pnum=1
-  # for (i in 2:length(q1temp)){
-  #   if (q2temp[b[i]]<=Pq2[Pnum]){
-  #     Pnum=Pnum+1
-  #     PX <- rbind(PX, Xtemp[b[i],1:k])
-  #     Pq1 <- c(Pq1,q1temp[b[i]])
-  #     Pq2 <- c(Pq2,q2temp[b[i]])
-  #   }
-  # }
-  
+
   # prediction of each objective's quantile mean and sd value at x
   pred1=pred_Q(newdata, model_f1, beta, tau_new$tau1)
   pred2=pred_Q(newdata, model_f2, beta, tau_new$tau2)
@@ -60,7 +47,6 @@ mult_EQI = function(newdata,design_X, model_f1, model_f2, beta, tau_new, Constra
   
   m_Q2<- pred2$m_Q
   s_Q2 <- pred2$s_Q
-  
   # probability of improvement calculation
   PITerm1=pnorm((Pq1[1]-m_Q1)/s_Q1)
   

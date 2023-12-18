@@ -1,6 +1,12 @@
 library(MOEEQI)
+
+if (!require('MaxPro', character.only = TRUE)) {
+  install.packages('MaxPro', dependencies = TRUE)
+  require('MaxPro', character.only = TRUE)
+}
+
 # Set a
-a=0.25
+a=0.5
 # Test functions
 f1 <- function(x,theta){
   x1 <- unlist(x[,1])
@@ -39,8 +45,8 @@ design_X <- as.matrix(t(t(design_X)*c(diff(x_c_1_range), diff(x_c_2_range))+
 # Make it a data.frame
 orig_design_X <- data.frame(x=design_X)
 
-# Metric option # Others are not implemented at the moment
-Option <- 'NegLogExpImp' # I'm not entirely sure if that's usefull
+# Metric option
+Option <- 'NegLogExpImp' #'NegEQI'
 
 # select exploration/exploitation ratio (see EQI paper for details)
 beta <- .8
@@ -110,9 +116,10 @@ if(sum(des_rep)!=0){
 
 #Add constraint info for objectives
 ConstraintInfo <- NULL
-# ConstraintInfo$ConstraintLimits<-matrix(c(2, 2),1,2)
+# If using constraint optimisation, please uncomment both ConstraintInfo$ConstraintLimits and ConstraintInfo$y
+ConstraintInfo$ConstraintLimits<-matrix(c(1, 1),1,2)
 # #Current observations to be compared against ConstraintLimits
-# ConstraintInfo$y <- cbind(y1_new, y2_new)
+ConstraintInfo$y <- cbind(y1_new, y2_new)
 
 reps <- NULL
 for (i in 1:Nsteps) {
@@ -130,8 +137,33 @@ for (i in 1:Nsteps) {
     design_X <- rbind(newdata[select_point,],design_X)
   }
   # If not all EQI are zero and not all the same -- standard case
-  else{#find the design point with the highest EQI metric (min(-log(EQI)))
-    best_X <- which.min(EQI_newdata$metric)
+  else{ # If not all EQI are zero and not all the same -- standard case
+    #find the design point with the highest EQI metric (min(-log(EQI)))
+    pred1=pred_Q(newdata, model_f1, beta, tau_new$tau1)
+    pred2=pred_Q(newdata, model_f2, beta, tau_new$tau2)
+    m_Q1 <- pred1$m_Q
+    m_Q2 <- pred2$m_Q
+    s_Q1 <- pred1$s_Q
+    s_Q2 <- pred2$s_Q
+    if (!is.null(ConstraintInfo)) {
+      m_Q <- cbind(m_Q1,m_Q2)
+      s_Q <- cbind(s_Q1,s_Q2)
+      for (i in 1:length(m_Q1)){
+        for (j in 1:length(ConstraintInfo$ConstraintLimits)){
+          #We check if all the sampling points satisfy given constraints
+          if (!is.na(m_Q[i,j]) & m_Q[i,j]>ConstraintInfo$ConstraintLimit[j]+qnorm(beta)*s_Q[i,j]) {
+            m_Q[i,1]=NaN
+            m_Q[i,2]=NaN
+          }
+        }
+      }
+      within_constraints <- which(!is.na(m_Q[,1]))
+    }else{within_constraints <- 1:nrow(newdata)}
+    
+    best_X <- which(EQI_newdata$metric == min(EQI_newdata$metric[within_constraints]))
+    if (length(best_X)>1) {
+      best_X <- sample(best_X,1)
+    }
     #find the values of the best design points
     impr_x <- newdata[best_X,]
     repetition <- row.match(impr_x, design_X)

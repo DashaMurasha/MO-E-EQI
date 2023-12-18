@@ -20,11 +20,10 @@ First install our package MOEEQI from git. We need the standard package
 ‘devtools’ to add our package off git.
 
 ``` r
-install.packages("devtools")
+#install.packages("devtools")
 ```
 
-This is the standard way to import an R package into the current
-session.
+This is the standard way to import an R package into the current session
 
 ``` r
 library("devtools")
@@ -38,7 +37,8 @@ Now we need to build our package MOEEQI from git.
 install_github("StatsDasha/MO-E-EQI")
 ```
 
-    ## Downloading GitHub repo StatsDasha/MO-E-EQI@HEAD
+    ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (0f22625a) has not changed since last install.
+    ##   Use `force = TRUE` to force installation
 
 Alternatiely, one can download the full project from github and install
 using
@@ -64,7 +64,21 @@ Next, we move on to the example accompanying the paper (!!!!!!!!!!!!!!!
 ref !!!!!!!!!!!!!!!!!!). This example is available in the
 ‘test_function_EQI.R’ file.
 
-We first set the level of noise and define out funstions
+We first ensure that the “MaxPro” R package is installed and library it
+
+``` r
+if (!require('MaxPro', character.only = TRUE)) {
+install.packages('MaxPro', dependencies = TRUE)
+require('MaxPro', character.only = TRUE)
+}
+```
+
+    ## Loading required package: MaxPro
+
+    ## Loading required package: nloptr
+
+Then we set the level of noise “a” (non-negative and we only considered
+values up to 0.5 in our analysis) and define our functions
 
 ``` r
 # Set a
@@ -209,7 +223,7 @@ y2_new <- y2_orig
 y_plot <- cbind(y1=as.vector(y1_new),y2=as.vector(y2_new), x.1=orig_design_X[,1], x.2=orig_design_X[,2])
 ```
 
-Now we move to the EQI loop to sequentially add desing points to alter
+Now we move to the EQI loop to sequentially add design points to alter
 the Pareto front.
 
 First, we select new points to calculate EQI at. Covers all the points
@@ -222,7 +236,7 @@ n_sample <- length(newdata[,1])
 ```
 
 The next line checks which of the current design points exists in the
-newdata. This is nessessary for tau_new function
+newdata. This is necessary for tau_new function
 
 ``` r
 des_rep <- design_repetitions(newdata, design_X)
@@ -272,8 +286,33 @@ for (i in 1:Nsteps) {
     design_X <- rbind(newdata[select_point,],design_X)
   }
   # If not all EQI are zero and not all the same -- standard case
-  else{#find the design point with the highest EQI metric (min(-log(EQI)))
-    best_X <- which.min(EQI_newdata$metric)
+  else{# If not all EQI are zero and not all the same -- standard case
+    #find the design point with the highest EQI metric (min(-log(EQI)))
+    pred1=pred_Q(newdata, model_f1, beta, tau_new$tau1)
+    pred2=pred_Q(newdata, model_f2, beta, tau_new$tau2)
+    m_Q1 <- pred1$m_Q
+    m_Q2 <- pred2$m_Q
+    s_Q1 <- pred1$s_Q
+    s_Q2 <- pred2$s_Q
+    if (!is.null(ConstraintInfo)) {
+      m_Q <- cbind(m_Q1,m_Q2)
+      s_Q <- cbind(s_Q1,s_Q2)
+      for (i in 1:length(m_Q1)){
+        for (j in 1:length(ConstraintInfo$ConstraintLimits)){
+          #We check if all the sampling points satisfy given constraints
+          if (!is.na(m_Q[i,j]) & m_Q[i,j]>ConstraintInfo$ConstraintLimit[j]+qnorm(beta)*s_Q[i,j]) {
+            m_Q[i,1]=NaN
+            m_Q[i,2]=NaN
+          }
+        }
+      }
+      within_constraints <- which(!is.na(m_Q[,1]))
+    }else{within_constraints <- 1:nrow(newdata)}
+    
+    best_X <- which(EQI_newdata$metric == min(EQI_newdata$metric[within_constraints]))
+    if (length(best_X)>1) {
+      best_X <- sample(best_X,1)
+    }
     #find the values of the best design points
     impr_x <- newdata[best_X,]
     repetition <- row.match(impr_x, design_X)
@@ -446,7 +485,7 @@ if(length(legend_ind)>1){
 }
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-26-1.png)<!-- --> New design
+![](README_files/figure-gfm/unnamed-chunk-27-1.png)<!-- --> New design
 points plot.
 
 ``` r
@@ -462,7 +501,7 @@ for(i in Nsteps:1){
 }
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-27-1.png)<!-- --> Simple plot.
+![](README_files/figure-gfm/unnamed-chunk-28-1.png)<!-- --> Simple plot.
 
 ``` r
 ###################################################################################################
@@ -512,4 +551,4 @@ legend(x= "topright",
 )
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
