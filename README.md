@@ -20,7 +20,7 @@ First install our package MOEEQI from GitHub. We need the standard
 package ‘devtools’ to add our package off GitHub.
 
 ``` r
-#install.packages("devtools")
+install.packages("devtools")
 ```
 
 This is the standard way to import an R package into the current session
@@ -44,7 +44,7 @@ Alternatiely, one can download the full project from GitHub and install
 using
 
 ``` r
-#devtools::install("path/to/package/folder")
+devtools::install("path/to/package/folder")
 ```
 
 Note that the above instructions should only need running once in order
