@@ -19,8 +19,11 @@ A copy of this README.md file is available in the R Markdown file
 First install our package MOEEQI from git. We need the standard package
 ‘devtools’ to add our package off git.
 
+<<<<<<< HEAD
+=======
+
 ``` r
-#install.packages("devtools")
+install.packages("devtools")
 ```
 
 This is the standard way to import an R package into the current
