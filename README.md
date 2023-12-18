@@ -1,6 +1,6 @@
 MO-E-EQI
 ================
-2023-12-15
+2023-12-18
 
 Supplemental materials for (!!!!!!!!!!!!!!! ref !!!!!!!!!!!!!!!!!!)
 
@@ -9,7 +9,7 @@ Authors: D. Semochkina, A.I.J. Forester, D.C. Woods
 Corresponding Author: D. Semochkina (<d.semochkina@soton.ac.uk>), School
 of Mathematical Sciences, University of Southampton, UK
 
-This repository provides R package to caclulate multi-objective
+This repository provides an R package to calculate multi-objective
 Euclidian expected quantile improvement (MO-E-EQI) presented in the
 manuscript.
 
@@ -37,10 +37,10 @@ Now we need to build our package MOEEQI from git.
 install_github("StatsDasha/MO-E-EQI")
 ```
 
-    ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (34d21c91) has not changed since last install.
+    ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (27ebd1d1) has not changed since last install.
     ##   Use `force = TRUE` to force installation
 
-Alternatiely, one can download the full project from github and install
+Alternatiely, one can download the full project from Github and install
 using
 
 ``` r
@@ -183,7 +183,7 @@ for (i in 1:n_sample_points) {
 }
 ```
 
-Provide noise sd for both objectives.
+Provide noise standard deviation for both objectives.
 
 ``` r
 noise_sd <- sqrt(c(mean(var1),mean(var2)))
@@ -226,8 +226,8 @@ y_plot <- cbind(y1=as.vector(y1_new),y2=as.vector(y2_new), x.1=orig_design_X[,1]
 Now we move to the EQI loop to sequentially add design points to alter
 the Pareto front.
 
-First, we select new points to calculate EQI at. Covers all the points
-in the ranges.
+First, we select new points at which to calculate EQI. Covers all the
+points in the ranges.
 
 ``` r
 newdata <- expand.grid(x.1 = seq(from=x_c_1_range[1], to=x_c_1_range[2], length.out = 100),

@@ -116,10 +116,10 @@ if(sum(des_rep)!=0){
 
 #Add constraint info for objectives
 ConstraintInfo <- NULL
-# If using constraint optimisation, please uncomment both ConstraintInfo$ConstraintLimits and ConstraintInfo$y
-ConstraintInfo$ConstraintLimits<-matrix(c(1, 1),1,2)
-# #Current observations to be compared against ConstraintLimits
-ConstraintInfo$y <- cbind(y1_new, y2_new)
+# # If using constraint optimisation, please uncomment both ConstraintInfo$ConstraintLimits and ConstraintInfo$y
+# ConstraintInfo$ConstraintLimits<-matrix(c(1, 1),1,2)
+# # #Current observations to be compared against ConstraintLimits
+# ConstraintInfo$y <- cbind(y1_new, y2_new)
 
 reps <- NULL
 for (i in 1:Nsteps) {
