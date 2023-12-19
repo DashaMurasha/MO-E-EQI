@@ -18,7 +18,7 @@ mult_EQI = function(newdata,
     for (i in 1:length(q1temp)) {
       for (j in 1:length(ConstraintInfo$ConstraintLimits)) {
         #We check if all the sampling points satisfy given constraints
-        if (ConstraintInfo$y[i, j] > ConstraintInfo$ConstraintLimit[j]) {
+        if (ConstraintInfo$y[i, j] > ConstraintInfo$ConstraintLimits[j]) {
           q1temp[i] = NaN
           q2temp[i] = NaN
         }
