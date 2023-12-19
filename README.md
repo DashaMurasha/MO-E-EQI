@@ -20,7 +20,7 @@ First install our package MOEEQI from GitHub. We need the standard
 package ‘devtools’ to add our package off GitHub.
 
 ``` r
-install.packages("devtools")
+#install.packages("devtools")
 ```
 
 This is the standard way to import an R package into the current session
@@ -37,14 +37,13 @@ Now we need to build our package MOEEQI from GitHub
 install_github("StatsDasha/MO-E-EQI")
 ```
 
-    ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (4cd0e7dd) has not changed since last install.
-    ##   Use `force = TRUE` to force installation
+    ## Downloading GitHub repo StatsDasha/MO-E-EQI@HEAD
 
 Alternatiely, one can download the full project from GitHub and install
 using
 
 ``` r
-devtools::install("path/to/package/folder")
+#devtools::install("path/to/package/folder")
 ```
 
 Note that the above instructions should only need running once in order
@@ -82,22 +81,21 @@ values up to 0.5 in our analysis) and define our functions
 
 ``` r
 # Set a
-a=0.25
+a = 0.25
 # Test functions
-f1 <- function(x,theta){
-  x1 <- unlist(x[,1])
-  x2 <- unlist(x[,2])
-  theta1 <- unlist(theta[,1])
-  theta2 <- unlist(theta[,2])
-  1-sin(x1)+x2/10+a*cos(theta1)+theta2/10
+f1 <- function(x, theta) {
+  x1 <- unlist(x[, 1])
+  x2 <- unlist(x[, 2])
+  theta1 <- unlist(theta[, 1])
+  theta2 <- unlist(theta[, 2])
+  1 - sin(x1) + x2 / 10 + a * cos(theta1) + theta2 / 10
 }
-f2 <- function(x,theta){
-  x1 <- unlist(x[,1])
-  x2 <- unlist(x[,2])
-  theta1 <- unlist(theta[,1])
-  theta2 <- unlist(theta[,2])
-  1-cos(x1)+x2/3+a*sin(theta1)+theta2/3
-  
+f2 <- function(x, theta) {
+  x1 <- unlist(x[, 1])
+  x2 <- unlist(x[, 2])
+  theta1 <- unlist(theta[, 1])
+  theta2 <- unlist(theta[, 2])
+  1 - cos(x1) + x2 / 3 + a * sin(theta1) + theta2 / 3
 }
 ```
 
@@ -119,20 +117,20 @@ Select initial design points.
 
 ``` r
 # Input parameters ranges
-x_c_1_range <- c(0, pi/2)
+x_c_1_range <- c(0, pi / 2)
 x_c_2_range <-  c(0, 1)
 
 # Number of original design points
 n_sample_points <- 5
 
 # Generate original design (maximin Latin hypercube)
-design_X <- MaxPro::MaxProLHD( n = n_sample_points, p = 2, itermax = 20 )
-design_X <- MaxPro::MaxPro( InitialDesign = design_X$Design, iteration = 10 )$Design
+design_X <- MaxPro::MaxProLHD(n = n_sample_points, p = 2, itermax = 20)
+design_X <- MaxPro::MaxPro(InitialDesign = design_X$Design, iteration = 10)$Design
 
-design_X <- as.matrix(t(t(design_X)*c(diff(x_c_1_range), diff(x_c_2_range))+
-                          c(x_c_1_range[1],x_c_2_range[1])))
+design_X <- as.matrix(t(t(design_X) * c(diff(x_c_1_range), diff(x_c_2_range)) +
+                c(x_c_1_range[1], x_c_2_range[1])))
 # Make it a data.frame
-orig_design_X <- data.frame(x=design_X)
+orig_design_X <- data.frame(x = design_X)
 ```
 
 Choose the metric option. Currently two options available, -log(EQI)
@@ -262,9 +260,9 @@ Add constraint info for objectives (currently set to no constraints).
 
 ``` r
 ConstraintInfo <- NULL
-# ConstraintInfo$ConstraintLimits<-matrix(c(2, 2),1,2)
-# #Current observations to be compared against ConstraintLimits
-# ConstraintInfo$y <- cbind(y1_new, y2_new)
+ConstraintInfo$ConstraintLimits<-matrix(c(2, 2),1,2)
+#Current observations to be compared against ConstraintLimits
+ConstraintInfo$y <- cbind(y1_new, y2_new)
 ```
 
 Start the EQI loop
@@ -365,6 +363,7 @@ for (i in 1:Nsteps) {
   }
   model_f1 <- km(formula=~1, design=design_X, response=y1_new, covtype="gauss", noise.var=noise.var$tau1)
   model_f2 <- km(formula=~1, design=design_X, response=y2_new, covtype="gauss", noise.var=noise.var$tau2)
+  ConstraintInfo$y <- cbind(y1_new, y2_new)
 }
 ```
 

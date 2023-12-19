@@ -21,7 +21,6 @@ f2 <- function(x, theta) {
   theta1 <- unlist(theta[, 1])
   theta2 <- unlist(theta[, 2])
   1 - cos(x1) + x2 / 3 + a * sin(theta1) + theta2 / 3
-  
 }
 # Number of repetitions of each observation (model run)
 MC_sample_size <- 100
@@ -58,8 +57,6 @@ y1_orig <- y2_orig <- epsilons_orig <- NULL
 y1_all <- y2_all <- NULL
 var1 <- var2 <- NULL
 y_plot <- NULL
-# mu_1 <- 0
-# sigma_1 <- 1
 mu_2 <- 0
 sigma_2 <- 0.5
 # Run the model at design points
@@ -340,6 +337,7 @@ for (i in 1:Nsteps) {
       covtype = "gauss",
       noise.var = noise.var$tau2
     )
+  ConstraintInfo$y <- cbind(y1_new, y2_new)
 }
 
 
