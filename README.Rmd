@@ -298,7 +298,9 @@ for (i in 1:Nsteps) {
   }
   model_f1 <- km(formula=~1, design=design_X, response=y1_new, covtype="gauss", noise.var=noise.var$tau1)
   model_f2 <- km(formula=~1, design=design_X, response=y2_new, covtype="gauss", noise.var=noise.var$tau2)
-  ConstraintInfo$y <- cbind(y1_new, y2_new)
+  if (!is.null(ConstraintInfo)){
+    ConstraintInfo$y <- cbind(y1_new, y2_new)
+  }
 }
 ```
 

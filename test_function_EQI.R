@@ -337,7 +337,9 @@ for (i in 1:Nsteps) {
       covtype = "gauss",
       noise.var = noise.var$tau2
     )
-  ConstraintInfo$y <- cbind(y1_new, y2_new)
+  if (!is.null(ConstraintInfo)){
+    ConstraintInfo$y <- cbind(y1_new, y2_new)
+  }
 }
 
 

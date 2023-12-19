@@ -37,7 +37,8 @@ Now we need to build our package MOEEQI from GitHub
 install_github("StatsDasha/MO-E-EQI")
 ```
 
-    ## Downloading GitHub repo StatsDasha/MO-E-EQI@HEAD
+    ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (fd098cb9) has not changed since last install.
+    ##   Use `force = TRUE` to force installation
 
 Alternatiely, one can download the full project from GitHub and install
 using
@@ -260,9 +261,9 @@ Add constraint info for objectives (currently set to no constraints).
 
 ``` r
 ConstraintInfo <- NULL
-ConstraintInfo$ConstraintLimits<-matrix(c(2, 2),1,2)
-#Current observations to be compared against ConstraintLimits
-ConstraintInfo$y <- cbind(y1_new, y2_new)
+# ConstraintInfo$ConstraintLimits<-matrix(c(2, 2),1,2)
+# #Current observations to be compared against ConstraintLimits
+# ConstraintInfo$y <- cbind(y1_new, y2_new)
 ```
 
 Start the EQI loop
@@ -363,7 +364,9 @@ for (i in 1:Nsteps) {
   }
   model_f1 <- km(formula=~1, design=design_X, response=y1_new, covtype="gauss", noise.var=noise.var$tau1)
   model_f2 <- km(formula=~1, design=design_X, response=y2_new, covtype="gauss", noise.var=noise.var$tau2)
-  ConstraintInfo$y <- cbind(y1_new, y2_new)
+  if (!is.null(ConstraintInfo)){
+    ConstraintInfo$y <- cbind(y1_new, y2_new)
+  }
 }
 ```
 
