@@ -2,7 +2,7 @@ MO-E-EQI
 ================
 2023-12-18
 
-Supplemental materials for (!!!!!!!!!!!!!!! ref !!!!!!!!!!!!!!!!!!)
+Supplemental materials for https://arxiv.org/abs/2401.12031
 
 Authors: D. Semochkina, A.I.J. Forester, D.C. Woods
 
@@ -141,7 +141,7 @@ Choose the metric option. Currently two options available, -log(EQI)
 Option <- 'NegLogEQI'
 ```
 
-select quantile level (see EQI (!!!!!!!!!!!!!!! ref !!!!!!!!!!!!!!!!!!)
+select quantile level (see EQI https://arxiv.org/abs/2401.12031
 for details)
 
 ``` r
