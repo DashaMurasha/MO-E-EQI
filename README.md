@@ -37,9 +37,6 @@ Now we need to build our package MOEEQI from GitHub
 install_github("StatsDasha/MO-E-EQI")
 ```
 
-    ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (fd098cb9) has not changed since last install.
-    ##   Use `force = TRUE` to force installation
-
 Alternatively, one can download the full project from GitHub and install
 using
 
