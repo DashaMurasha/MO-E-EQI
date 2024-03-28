@@ -16,7 +16,7 @@ manuscript.
 A copy of this README.md file is available in the R Markdown file
 “README.Rmd”.
 
-First install our package MOEEQI from GitHub. We need the standard
+First, install our package MOEEQI from GitHub. We need the standard
 package ‘devtools’ to add our package off GitHub.
 
 ``` r
@@ -40,7 +40,7 @@ install_github("StatsDasha/MO-E-EQI")
     ## Skipping install of 'MOEEQI' from a github remote, the SHA1 (fd098cb9) has not changed since last install.
     ##   Use `force = TRUE` to force installation
 
-Alternatiely, one can download the full project from GitHub and install
+Alternatively, one can download the full project from GitHub and install
 using
 
 ``` r
@@ -60,8 +60,7 @@ library("MOEEQI")
 
     ## Loading required package: prodlim
 
-Next, we move on to the example accompanying the paper (!!!!!!!!!!!!!!!
-ref !!!!!!!!!!!!!!!!!!). This example is available in the
+Next, we move on to the example accompanying the paper (https://arxiv.org/abs/2401.12031). This example is available in the
 ‘test_function_EQI.R’ file.
 
 We first ensure that the “MaxPro” R package is installed and library it
@@ -370,8 +369,7 @@ for (i in 1:Nsteps) {
 }
 ```
 
-The following code reproduce the plots from the paper (!!!!!!!!!!!!!!!
-ref !!!!!!!!!!!!!!!!!!) . Note that the legend is conditional on whether
+The following code reproduces the plots from the paper (https://arxiv.org/abs/2401.12031). Note that the legend is conditional on whether
 there were repeated observations.
 
 ``` r
