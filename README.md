@@ -106,7 +106,7 @@ Choose the number of repetitions of each model run
 MC_sample_size <- 100
 ```
 
-Choose the number of steps of the MO-E-EsQI sequential design loop
+Choose the number of steps of the MO-E-EQI sequential design loop
 
 ``` r
 # Computational budget (steps in the loop)
