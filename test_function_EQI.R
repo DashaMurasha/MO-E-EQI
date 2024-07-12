@@ -48,7 +48,7 @@ design_X <-
 orig_design_X <- data.frame(x = design_X)
 
 # Metric option
-Option <- 'NegLogExpImp' #'NegEQI'
+Option <- 'NegEQI' #'NegLogExpImp' #
 
 # select exploration/exploitation ratio (see EQI paper for details)
 beta <- .8
