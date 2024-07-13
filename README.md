@@ -130,8 +130,7 @@ design_X <- as.matrix(t(t(design_X) * c(diff(x_c_1_range), diff(x_c_2_range)) +
 orig_design_X <- data.frame(x = design_X)
 ```
 
-Choose the metric option. Currently two options available, -log(EQI)
-(‘NegLogEQI’) or -EQI (‘NegEQI’)
+Choose the metric option. Currently, the mult_EQI can calculate either the negative log of the EQI (-log(EQI)), or just the negative probability of improvement (-PI).
 
 ``` r
 Option <- 'NegLogEQI'
